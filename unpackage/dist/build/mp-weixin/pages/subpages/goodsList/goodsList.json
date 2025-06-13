@@ -1,0 +1,21 @@
+{
+  "navigationBarTitleText": "渠道管理",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-notice-bar": "/node-modules/@dcloudio/uni-ui/lib/uni-notice-bar/uni-notice-bar",
+    "uni-table": "/node-modules/@dcloudio/uni-ui/lib/uni-table/uni-table",
+    "uni-tr": "/node-modules/@dcloudio/uni-ui/lib/uni-tr/uni-tr",
+    "uni-th": "/node-modules/@dcloudio/uni-ui/lib/uni-th/uni-th",
+    "uni-td": "/node-modules/@dcloudio/uni-ui/lib/uni-td/uni-td",
+    "uni-popup": "/node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup",
+    "uni-popup-dialog": "/node-modules/@dcloudio/uni-ui/lib/uni-popup-dialog/uni-popup-dialog",
+    "l-painter": "/uni_modules/lime-painter/components/l-painter/l-painter",
+    "l-painter-image": "/uni_modules/lime-painter/components/l-painter-image/l-painter-image",
+    "l-painter-view": "/uni_modules/lime-painter/components/l-painter-view/l-painter-view",
+    "l-painter-text": "/uni_modules/lime-painter/components/l-painter-text/l-painter-text",
+    "my-process": "/pages/subpages/common/myProcess",
+    "l-painter-qrcode": "/uni_modules/lime-painter/components/l-painter-qrcode/l-painter-qrcode",
+    "u-qrcode": "/uni_modules/Sansnn-uQRCode/components/u-qrcode/u-qrcode"
+  }
+}

@@ -1,0 +1,134 @@
+{
+    "name" : "推游小助手",
+    "appid" : "__UNI__4FA7E71",
+    "description" : "",
+    "versionName" : "1.4.3",
+    "versionCode" : 143,
+    "transformPx" : false,
+    "app-plus" : {
+        /* 5+App特有相关 */
+        "usingComponents" : true,
+        "nvueCompiler" : "uni-app",
+        "nvueStyleCompiler" : "uni-app",
+        "splashscreen" : {
+            "alwaysShowBeforeRender" : false,
+            "waiting" : false,
+            "autoclose" : true,
+            "delay" : 0
+        },
+        "compatible" : {
+            // 设置为true表示忽略版本检查提示框，HBuilderX1.9.0及以上版本支持
+            "ignoreVersion" : true
+        },
+        "safearea" : {
+            "bottom" : {
+                "offset" : "none"
+            }
+        },
+        "modules" : {
+            "Camera" : {}
+        },
+        /* 模块配置 */
+        "distribute" : {
+            /* 应用发布信息 */
+            "android" : {
+                "app_id" : "5574698",
+                "use_test_env" : true,
+                /* android打包配置 */
+                "permissions" : [
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.REQUEST_INSTALL_PACKAGES\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+                ]
+            },
+            "ios" : {
+                "dSYMs" : false
+            },
+            /* ios打包配置 */
+            "sdkConfigs" : {
+                "ad" : {},
+                "share" : {
+                    "weixin" : {
+                        "appid" : "wxd0e0881530ee4444",
+                        "UniversalLinks" : ""
+                    }
+                }
+            },
+            "splashscreen" : {
+                "useOriginalMsgbox" : true,
+                "androidStyle" : "common",
+                "android" : {
+                    "hdpi" : "H:/BaiduNetdiskDownload/4.15/Android-SDK@4.15.82065_20240508/UniPlugin-Hello-AS/app/src/main/res/drawable-xxhdpi/gees.9.png"
+                }
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "static/icons/72x72.png",
+                    "xhdpi" : "static/icons/96x96.png",
+                    "xxhdpi" : "static/icons/144x144.png",
+                    "xxxhdpi" : "static/icons/192x192.png"
+                },
+                "ios" : {
+                    "appstore" : "static/icons/1024x1024.png",
+                    "ipad" : {
+                        "app" : "static/icons/76x76.png",
+                        "app@2x" : "static/icons/152x152.png",
+                        "notification" : "static/icons/20x20.png",
+                        "notification@2x" : "static/icons/40x40.png",
+                        "proapp@2x" : "static/icons/167x167.png",
+                        "settings" : "static/icons/29x29.png",
+                        "settings@2x" : "static/icons/58x58.png",
+                        "spotlight" : "static/icons/40x40.png",
+                        "spotlight@2x" : "static/icons/80x80.png"
+                    },
+                    "iphone" : {
+                        "app@2x" : "static/icons/120x120.png",
+                        "app@3x" : "static/icons/180x180.png",
+                        "notification@2x" : "static/icons/40x40.png",
+                        "notification@3x" : "static/icons/60x60.png",
+                        "settings@2x" : "static/icons/58x58.png",
+                        "settings@3x" : "static/icons/87x87.png",
+                        "spotlight@2x" : "static/icons/80x80.png",
+                        "spotlight@3x" : "static/icons/120x120.png"
+                    }
+                }
+            }
+        }
+    },
+    "quickapp" : {},
+    "mp-weixin" : {
+        "appid" : "wx7212335fa9515732",
+        "setting" : {
+            "urlCheck" : false
+        },
+        "usingComponents" : true
+    },
+    "vueVersion" : "2",
+    "fallbackLocale" : "zh-Hans",
+    "locale" : "zh-Hans",
+    "h5" : {
+        "title" : "",
+        "router" : {
+            "mode" : "hash",
+            "base" : "./"
+        },
+        "publicPath" : "./",
+        "devServer" : {
+            "https" : false
+        }
+    }
+}

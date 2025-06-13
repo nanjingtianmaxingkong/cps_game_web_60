@@ -1,0 +1,18 @@
+{
+  "navigationBarTitleText": "",
+  "navigationStyle": "custom",
+  "onReachBottomDistance": 100,
+  "usingComponents": {
+    "uni-popup": "/node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup",
+    "l-painter": "/uni_modules/lime-painter/components/l-painter/l-painter",
+    "l-painter-image": "/uni_modules/lime-painter/components/l-painter-image/l-painter-image",
+    "l-painter-view": "/uni_modules/lime-painter/components/l-painter-view/l-painter-view",
+    "l-painter-text": "/uni_modules/lime-painter/components/l-painter-text/l-painter-text",
+    "l-painter-qrcode": "/uni_modules/lime-painter/components/l-painter-qrcode/l-painter-qrcode",
+    "uni-section": "/node-modules/@dcloudio/uni-ui/lib/uni-section/uni-section",
+    "uni-data-select": "/node-modules/@dcloudio/uni-ui/lib/uni-data-select/uni-data-select",
+    "uni-easyinput": "/node-modules/@dcloudio/uni-ui/lib/uni-easyinput/uni-easyinput",
+    "uni-file-picker": "/node-modules/@dcloudio/uni-ui/lib/uni-file-picker/uni-file-picker",
+    "u-qrcode": "/uni_modules/Sansnn-uQRCode/components/u-qrcode/u-qrcode"
+  }
+}

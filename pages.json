@@ -1,0 +1,190 @@
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "推游小助手"
+      }
+    },
+    {
+      "path": "pages/subpages/index/index",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom",
+        "onReachBottomDistance": 100,
+        "app-plus": {
+          "bounce": "none"
+        }
+      }
+    },
+    {
+      "path": "pages/subpages/goodsList/goodsList",
+      "style": {
+        "navigationBarTitleText": "渠道管理",
+        "navigationStyle": "custom",
+        "enablePullDownRefresh": false,
+        "app-plus": {
+          "bounce": "none"
+        }
+      }
+    },
+    {
+      "path": "pages/subpages/promotionData/promotionData",
+      "style": {
+        "enablePullDownRefresh": true,
+        "navigationBarTitleText": "推广数据",
+        "onReachBottomDistance": 100,
+        "app-plus": {
+          "bounce": "none"
+        }
+      }
+    },
+    {
+      "path": "pages/subpages/aboutMe/aboutMe",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom",
+        "onReachBottomDistance": 100,
+        "app-plus": {
+          "bounce": "none"
+        }
+      }
+    },
+    {
+      "path": "pages/subpages/realName/realName",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom",
+        "onReachBottomDistance": 100,
+        "app-plus": {
+          "bounce": "none"
+        }
+      }
+    },
+    {
+      "path": "pages/subpages/getMoney/index",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom",
+        "onReachBottomDistance": 100,
+        "app-plus": {
+          "bounce": "none"
+        }
+      }
+    },
+    {
+      "path": "pages/subpages/orderList/orderList",
+      "style": {
+        "navigationBarTitleText": "推游小助手",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/subpages/test/test",
+      "style": {
+        "navigationBarTitleText": "抽奖小工具",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom",
+        "onReachBottomDistance": 100,
+        "app-plus": {
+          "bounce": "none"
+        }
+      }
+    },
+    {
+      "path": "pages/subpages/search/search",
+      "style": {
+        "navigationBarTitleText": "搜索",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/subpages/commonH5/index",
+      "style": {
+        "navigationBarTitleText": "关于我们",
+        "enablePullDownRefresh": false
+      }
+    },
+    {
+      "path": "pages/subpages/common/gameBriefly",
+      "style": {
+        "navigationBarTitleText": "简介",
+        "navigationStyle": "custom",
+        "enablePullDownRefresh": false,
+        "app-plus": {
+          "bounce": "none"
+        }
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#9DA4B3",
+    "backgroundColor": "#fff",
+    "selectedColor": "#0D0E15",
+    "borderStyle": "white",
+    "height": "54px",
+    "fontSize": "12px",
+    "spacing": "4px",
+    "list": [
+      {
+        "text": "合作游戏",
+        "pagePath": "pages/subpages/index/index",
+        "iconPath": "static/game_cps/ioc/cpsgame.png",
+        "selectedIconPath": "static/game_cps/ioc/cpsgamea.png"
+      },
+	  {
+	    "text": "渠道管理",
+	    "pagePath": "pages/subpages/goodsList/goodsList",
+	    "iconPath": "static/game_cps/ioc/qudao.png",
+	    "selectedIconPath": "static/game_cps/ioc/qudaoa.png"
+	  },
+      {
+        "text": "推广数据",
+        "pagePath": "pages/subpages/promotionData/promotionData",
+        "iconPath": "static/game_cps/ioc/data.png",
+        "selectedIconPath": "static/game_cps/ioc/dataa.png"
+      },
+      {
+        "text": "赚钱指南",
+        "pagePath": "pages/subpages/getMoney/index",
+        "iconPath": "static/game_cps/ioc/moeny.png",
+        "selectedIconPath": "static/game_cps/ioc/moenya.png"
+      },
+      {
+        "text": "我的/合作人",
+        "pagePath": "pages/subpages/aboutMe/aboutMe",
+        "iconPath": "static/game_cps/ioc/aboutus.png",
+        "selectedIconPath": "static/game_cps/ioc/aboutusa.png"
+      }
+    ],
+    "position": "bottom"
+  },
+  "uniIdRouter": {},
+  "condition": {
+    //模式配置，仅开发期间生效
+    "current": 0,
+    //当前激活的模式(list 的索引项)
+    "list": [
+      {
+        "name": "",
+        //模式名称
+        "path": "",
+        //启动页面，必选
+        "query": ""
+        //启动参数，在页面的onLoad函数里面得到
+      }
+    ]
+  }
+}

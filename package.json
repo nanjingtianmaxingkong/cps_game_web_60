@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "sass": "^1.63.6",
+    "sass-loader": "^13.3.2"
+  },
+  "dependencies": {
+    "@dcloudio/uni-ui": "^1.4.28",
+    "decimal.js": "^10.4.3",
+    "js-md5": "^0.7.3",
+    "jsencrypt": "^3.3.2",
+    "qrcodejs2": "^0.0.2",
+    "vuex-persistedstate": "^4.1.0",
+    "weixin-js-sdk": "^1.6.5"
+  }
+}

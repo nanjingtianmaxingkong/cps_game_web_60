@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "抽奖小工具",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "onReachBottomDistance": 100,
+  "usingComponents": {}
+}
