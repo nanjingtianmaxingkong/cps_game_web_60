@@ -1,13 +1,10 @@
 {
   "enablePullDownRefresh": true,
+  "navigationStyle": "custom",
   "navigationBarTitleText": "推广数据",
   "onReachBottomDistance": 100,
   "usingComponents": {
     "uni-notice-bar": "/node-modules/@dcloudio/uni-ui/lib/uni-notice-bar/uni-notice-bar",
-    "uni-table": "/node-modules/@dcloudio/uni-ui/lib/uni-table/uni-table",
-    "uni-tr": "/node-modules/@dcloudio/uni-ui/lib/uni-tr/uni-tr",
-    "uni-th": "/node-modules/@dcloudio/uni-ui/lib/uni-th/uni-th",
-    "uni-td": "/node-modules/@dcloudio/uni-ui/lib/uni-td/uni-td",
     "uni-popup": "/node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup",
     "uni-popup-dialog": "/node-modules/@dcloudio/uni-ui/lib/uni-popup-dialog/uni-popup-dialog"
   }

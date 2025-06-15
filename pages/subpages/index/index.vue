@@ -794,14 +794,14 @@ export default {
     padding-bottom: 20rpx;
     display: flex;
     justify-content: center;
+    font-family: PingFangSC, PingFang SC;
+    font-weight: 600;
+    font-size: 32rpx;
+    color: #000000;
+    line-height: 48rpx;
     text-align: right;
     font-style: normal;
     text-transform: none;
-    font-family: Alibaba PuHuiTi 2.0;
-    font-weight: normal;
-    font-size: 36rpx;
-    color: #000000;
-    line-height: 44rpx;
   }
 
   &-true {

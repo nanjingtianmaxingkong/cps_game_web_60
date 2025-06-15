@@ -2,10 +2,20 @@
 <!--  "BASE_URL":"https://lxx.nanjingtianma.top",-->
   <view>
     <view class="container" >
-      <image class="top" src="@/static/game_cps/home_bg_header@2x.png">
+      <image class="top"  src="@/static/game_cps/bakimage.png">
         <view style="height: 100rpx"/>
         <view style="position: relative" >
           <view class="top-title">推游小助手</view>
+
+          <view class="top_title_top top_20">
+            <view class="left_10">
+              <view class="body-text6  top_20">绑定手机号</view>
+              <image class="fu_image" src="@/static/game_cps/goodslist/dibuioc.png" />
+            </view>
+            <image src="@/static/game_cps/money/zuo.png" class="label_1 right_20"></image>
+          </view>
+
+
           <view class="body center_margin">
             <view class="flex_center_not_just padding_20">
               <span class="body-lv"/>
@@ -813,7 +823,23 @@ export default {
   height: 800rpx;
   overflow-y: auto;
 }
-
+.top_title_top{
+  width: 697rpx;
+  height: 93rpx;
+  background: #FFFFFF;
+  border-radius: 33rpx;
+  margin: 0px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.body-text6{
+  font-family: Alibaba PuHuiTi 2.0;
+  font-weight: normal;
+  font-size: 32rpx;
+  color: #000000;
+  line-height: 44rpx;
+}
 .button-1 {
   height: 52rpx;
   background: #F8F9FA;
@@ -858,6 +884,7 @@ export default {
 .top {
   position: absolute;
   width: 100%;
+  height: 100%;
   background-size: 100% 100%;
 
   &-notice {
@@ -1060,13 +1087,27 @@ export default {
   background-size: 100% 100%;
 }
 
-
+.fu_image{
+  width: 106.67rpx;
+  height: 6.67rpx;
+}
+.label_1 {
+  width: 32rpx;
+  height: 32rpx;
+}
 .body {
   width: 700rpx;
   height: 440rpx;
   background: #FFFFFF;
   border-radius: 30rpx;
-
+  &-text {
+    font-family: Alibaba PuHuiTi 2.0;
+    font-weight: normal;
+    font-size: 40rpx;
+    color: #000000;
+    line-height: 44rpx;
+    height: 10rpx;
+  }
   &-top {
     &-text_hui {
       font-family: PingFangSC, PingFang SC;

@@ -32767,6 +32767,7 @@ var _default = {
     "path": "pages/subpages/promotionData/promotionData",
     "style": {
       "enablePullDownRefresh": true,
+      "navigationStyle": "custom",
       "navigationBarTitleText": "推广数据",
       "onReachBottomDistance": 100,
       "app-plus": {

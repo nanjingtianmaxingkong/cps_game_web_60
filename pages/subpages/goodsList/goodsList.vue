@@ -1,163 +1,161 @@
 <template>
   <view>
-    <image class="top" src="@/static/game_cps/home_bg_header@2x.png">
-      <view style="height: 100rpx"/>
-      <view style="position: relative">
-        <view class="top-title">推游小助手</view>
-        <view v-if="notice" class="top-notice">
-          <uni-notice-bar
-              @click="openPopup()"
-              moreColor="#F5EFFF"
-              background-color="#F5EFFF"
-              color="#9966FF"
-              show-get-more
-              show-icon
-              :text="notice.noticeTitle"
-          />
-        </view>
-        <view class="body">
-          <view class="flex_center_not_just padding_20">
-            <span class="body-text left_10">推广邀请码</span>
-          </view>
-
-
-          <view style="padding: 0rpx 20rpx 0rpx 20rpx">
-            <image class="body-moreImg" src="@/static/game_cps/goodslist/zugame3.png"></image>
-            <view style="position: relative">
-              <view class="padding_20" style="display: flex">
-                <view>
-                  <view class="text1 top_15 left_25">
-                    我的渠道名称
-                  </view>
-                  <view class="text2 top_10  left_25">
-                    <!--                  <view class="text2 top_10" @click="showInputDialog()">-->
-                    <view class="text2">
-                      {{ info.account }}
-                    </view>
-                  </view>
-                </view>
-
-                <view>
-                  <view class="text1 top_15 left_60">
-                    推广奖励金
-                  </view>
-                  <view class="text2 top_10 left_60">
-                    <view class="text2">
-                      ￥ {{ detail.totalToAmount }}
-                    </view>
-                  </view>
-                </view>
-              </view>
-            </view>
-            <view class="top_30">
-              <image class="body-moreImg" src="@/static/game_cps/goodslist/zugame2.png"></image>
-              <view style="position: relative">
-                <view class="padding_20" style="display: flex">
-                  <view>
-                    <view class="text1 top_15 left_25">
-                      累计发展子渠道
-                    </view>
-                    <view class="text2 top_10  left_25">
-                      <view class="text2">
-                        {{ info.recommendedUser }} 个
-                      </view>
-                    </view>
-                  </view>
-                </view>
-              </view>
-            </view>
-            <view class="top_30">
-              <image class="body-moreImg" src="@/static/game_cps/goodslist/zugame1.png"></image>
-              <view style="position: relative">
-                <view class="padding_20" style="display: flex">
-                  <view>
-                    <view class="text1 top_15 left_25">
-                      推广邀请码
-                    </view>
-                    <view class="text2 top_10  left_25">
-                      <view class="text2">
-                        {{ info.refereeCode }}
-                      </view>
-                    </view>
-                  </view>
-                </view>
-              </view>
-            </view>
-          </view>
-<!--          uni.navigateTo({url: '/pages/subpages/orderList/orderList'-->
-          <view  @click="getDetail" class="flex_between padding_20 top_50">
-            <span class="body-text left_10">一级收益</span>
-            <image src="@/static/game_cps/money/zuo.png" class="label_1"></image>
-          </view>
-          <view class="top_30 left_20">
-            <image class="body-moreImg" src="@/static/game_cps/goodslist/zugame.png"></image>
-            <view style="position: relative">
-              <view class="padding_20" style="display: flex">
-                <view>
-                  <view class="text1 top_15 left_25">
-                    子渠道收益
-                  </view>
-                  <view class="text2 top_10  left_25">
-                    <view class="text2">
-                      {{ detail.totalAmount }}
-                    </view>
-                  </view>
-                </view>
-                <view>
-                  <view class="text1 top_15 left_60">
-                    我的提成
-                  </view>
-                  <view class="text2 top_10 left_60">
-                    <view class="text2">
-                      {{ detail.totalToAmount }}
-                    </view>
-                  </view>
-                </view>
-              </view>
-            </view>
-          </view>
-
-
-          <view class="flex_between padding_20 top_50">
-            <span class="body-text left_10">二级收益</span>
-            <image src="@/static/game_cps/money/zuo.png" class="label_1"></image>
-          </view>
-          <view class="top_30 left_20">
-            <image class="body-moreImg" src="@/static/game_cps/goodslist/zugame.png"></image>
-            <view style="position: relative">
-              <view class="padding_20" style="display: flex">
-                <view>
-                  <view class="text1 top_15 left_25">
-                    子渠道收益
-                  </view>
-                  <view class="text2 top_10  left_25">
-                    <view class="text2">
-                      {{ detail.totalAmount }}
-                    </view>
-                  </view>
-                </view>
-                <view>
-                  <view class="text1 top_15 left_60">
-                    我的提成
-                  </view>
-                  <view class="text2 top_10 left_60">
-                    <view class="text2">
-                      {{ detail.totalToAmount }}
-                    </view>
-                  </view>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-        <uni-popup ref="alertDialog">
-          <uni-popup-dialog v-if="notice" type="success" cancelText="取消" confirmText="我已知晓"
-                            @confirm="closePo()">
-            <view v-html="notice.noticeContent"></view>
-          </uni-popup-dialog>
-        </uni-popup>
+    <view style="height: 100rpx"/>
+    <view style="position: relative">
+      <view class="top-title">推游小助手</view>
+      <view v-if="notice" class="top-notice">
+        <uni-notice-bar
+            @click="openPopup()"
+            moreColor="#F5EFFF"
+            background-color="#F5EFFF"
+            color="#9966FF"
+            show-get-more
+            show-icon
+            :text="notice.noticeTitle"
+        />
       </view>
-    </image>
+      <view class="body">
+        <view class="flex_center_not_just padding_20">
+          <span class="body-text left_10">推广邀请码</span>
+        </view>
+
+
+        <view style="padding: 0rpx 20rpx 0rpx 20rpx">
+          <image class="body-moreImg" src="@/static/game_cps/goodslist/zugame3.png"></image>
+          <view style="position: relative">
+            <view class="padding_20" style="display: flex">
+              <view>
+                <view class="text1 top_15 left_25">
+                  我的渠道名称
+                </view>
+                <view class="text2 top_10  left_25">
+                  <!--                  <view class="text2 top_10" @click="showInputDialog()">-->
+                  <view class="text2">
+                    {{ info.account }}
+                  </view>
+                </view>
+              </view>
+
+              <view>
+                <view class="text1 top_15 left_60">
+                  推广奖励金
+                </view>
+                <view class="text2 top_10 left_60">
+                  <view class="text2">
+                    ￥ {{ detail.totalToAmount }}
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="top_30">
+            <image class="body-moreImg" src="@/static/game_cps/goodslist/zugame2.png"></image>
+            <view style="position: relative">
+              <view class="padding_20" style="display: flex">
+                <view>
+                  <view class="text1 top_15 left_25">
+                    累计发展子渠道
+                  </view>
+                  <view class="text2 top_10  left_25">
+                    <view class="text2">
+                      {{ info.recommendedUser }} 个
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class="top_30">
+            <image class="body-moreImg" src="@/static/game_cps/goodslist/zugame1.png"></image>
+            <view style="position: relative">
+              <view class="padding_20" style="display: flex">
+                <view>
+                  <view class="text1 top_15 left_25">
+                    推广邀请码
+                  </view>
+                  <view class="text2 top_10  left_25">
+                    <view class="text2">
+                      {{ info.refereeCode }}
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!--          uni.navigateTo({url: '/pages/subpages/orderList/orderList'-->
+        <view @click="getDetail" class="flex_between padding_20 top_50">
+          <span class="body-text left_10">一级收益</span>
+          <image src="@/static/game_cps/money/zuo.png" class="label_1"></image>
+        </view>
+        <view class="top_30 left_20">
+          <image class="body-moreImg" src="@/static/game_cps/goodslist/zugame.png"></image>
+          <view style="position: relative">
+            <view class="padding_20" style="display: flex">
+              <view>
+                <view class="text1 top_15 left_25">
+                  子渠道收益
+                </view>
+                <view class="text2 top_10  left_25">
+                  <view class="text2">
+                    {{ detail.totalAmount }}
+                  </view>
+                </view>
+              </view>
+              <view>
+                <view class="text1 top_15 left_60">
+                  我的提成
+                </view>
+                <view class="text2 top_10 left_60">
+                  <view class="text2">
+                    {{ detail.totalToAmount }}
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+
+
+        <view class="flex_between padding_20 top_50">
+          <span class="body-text left_10">二级收益</span>
+          <image src="@/static/game_cps/money/zuo.png" class="label_1"></image>
+        </view>
+        <view class="top_30 left_20">
+          <image class="body-moreImg" src="@/static/game_cps/goodslist/zugame.png"></image>
+          <view style="position: relative">
+            <view class="padding_20" style="display: flex">
+              <view>
+                <view class="text1 top_15 left_25">
+                  子渠道收益
+                </view>
+                <view class="text2 top_10  left_25">
+                  <view class="text2">
+                    {{ detail.totalAmount }}
+                  </view>
+                </view>
+              </view>
+              <view>
+                <view class="text1 top_15 left_60">
+                  我的提成
+                </view>
+                <view class="text2 top_10 left_60">
+                  <view class="text2">
+                    {{ detail.totalToAmount }}
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <uni-popup ref="alertDialog">
+        <uni-popup-dialog v-if="notice" type="success" cancelText="取消" confirmText="我已知晓"
+                          @confirm="closePo()">
+          <view v-html="notice.noticeContent"></view>
+        </uni-popup-dialog>
+      </uni-popup>
+    </view>
   </view>
 </template>
 
@@ -265,7 +263,7 @@ export default {
     })
   },
   methods: {
-    getDetail(){
+    getDetail() {
       uni.navigateTo({url: '/pages/subpages/orderList/orderList'})
     },
     choose(val) {

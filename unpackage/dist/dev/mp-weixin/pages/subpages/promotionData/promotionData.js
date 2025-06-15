@@ -41,18 +41,6 @@ try {
     uniNoticeBar: function () {
       return __webpack_require__.e(/*! import() | node-modules/@dcloudio/uni-ui/lib/uni-notice-bar/uni-notice-bar */ "node-modules/@dcloudio/uni-ui/lib/uni-notice-bar/uni-notice-bar").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-notice-bar/uni-notice-bar.vue */ 171))
     },
-    uniTable: function () {
-      return __webpack_require__.e(/*! import() | node-modules/@dcloudio/uni-ui/lib/uni-table/uni-table */ "node-modules/@dcloudio/uni-ui/lib/uni-table/uni-table").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-table/uni-table.vue */ 197))
-    },
-    uniTr: function () {
-      return __webpack_require__.e(/*! import() | node-modules/@dcloudio/uni-ui/lib/uni-tr/uni-tr */ "node-modules/@dcloudio/uni-ui/lib/uni-tr/uni-tr").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-tr/uni-tr.vue */ 204))
-    },
-    uniTh: function () {
-      return __webpack_require__.e(/*! import() | node-modules/@dcloudio/uni-ui/lib/uni-th/uni-th */ "node-modules/@dcloudio/uni-ui/lib/uni-th/uni-th").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-th/uni-th.vue */ 211))
-    },
-    uniTd: function () {
-      return __webpack_require__.e(/*! import() | node-modules/@dcloudio/uni-ui/lib/uni-td/uni-td */ "node-modules/@dcloudio/uni-ui/lib/uni-td/uni-td").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-td/uni-td.vue */ 218))
-    },
     uniPopup: function () {
       return __webpack_require__.e(/*! import() | node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup */ "node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-popup/uni-popup.vue */ 178))
     },
@@ -81,6 +69,22 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var l0 = _vm.__map(_vm.Lists, function (item, index) {
+    var $orig = _vm.__get_orig(item)
+    var f0 = _vm._f("parseTime")(item.createTime)
+    return {
+      $orig: $orig,
+      f0: f0,
+    }
+  })
+  _vm.$mp.data = Object.assign(
+    {},
+    {
+      $root: {
+        l0: l0,
+      },
+    }
+  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -125,6 +129,21 @@ var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/
 var _index = _interopRequireDefault(__webpack_require__(/*! @/store/index.js */ 30));
 var _api = _interopRequireDefault(__webpack_require__(/*! @/js/api.js */ 40));
 var _utils = __webpack_require__(/*! @/js/utils.js */ 51);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
