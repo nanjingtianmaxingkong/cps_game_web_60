@@ -521,26 +521,6 @@ export default {
     position: absolute;
   }
 
-  &-moreImg1 {
-    height: 136rpx;
-    width: 344rpx;
-    background: url('@/static/game_cps/bg_yqm_03@2x.png');
-    background-size: 100% 100%;
-  }
-
-  &-moreImg2 {
-    height: 136rpx;
-    width: 344rpx;
-    background: url('@/static/game_cps/bg_lj_02@2x.png');
-    background-size: 100% 100%;
-  }
-
-  &-lv {
-    width: 6rpx;
-    height: 20rpx;
-    background: #5ACF86;
-    border-radius: 37rpx;
-  }
 
   &-text {
     font-family: Alibaba PuHuiTi 2.0;

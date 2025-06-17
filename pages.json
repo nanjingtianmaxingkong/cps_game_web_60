@@ -7,12 +7,6 @@
   },
   "pages": [
     {
-      "path": "pages/index/index",
-      "style": {
-        "navigationBarTitleText": "推游小助手"
-      }
-    },
-    {
       "path": "pages/subpages/index/index",
       "style": {
         "navigationBarTitleText": "",
@@ -69,6 +63,39 @@
       }
     },
     {
+      "path": "pages/subpages/login/login",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom",
+        "onReachBottomDistance": 100,
+        "app-plus": {
+          "bounce": "none"
+        }
+      }
+    },
+    {
+      "path": "pages/subpages/gameOrder/gameOrder",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom",
+        "onReachBottomDistance": 100,
+        "app-plus": {
+          "bounce": "none"
+        }
+      }
+    },
+    {
+      "path": "pages/subpages/withdraw/withdraw",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationStyle": "custom",
+        "onReachBottomDistance": 100,
+        "app-plus": {
+          "bounce": "none"
+        }
+      }
+    },
+    {
       "path": "pages/subpages/getMoney/index",
       "style": {
         "navigationBarTitleText": "",
@@ -96,6 +123,13 @@
         "app-plus": {
           "bounce": "none"
         }
+      }
+    },
+    {
+      "path": "pages/subpages/withdrawRecord/withdrawRecord",
+      "style": {
+        "navigationBarTitleText": "提现记录",
+        "enablePullDownRefresh": true
       }
     },
     {

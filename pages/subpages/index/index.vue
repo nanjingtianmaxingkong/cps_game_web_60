@@ -227,23 +227,25 @@ export default {
       noMore: false,
       pageNum: 1,
       pageSize: 10,
-      info: {},
     };
   },
   filters: {
     parseTime,
   },
-  onLoad(options) {
+  onLoad() {
+    // 已登录
+    // if (!store.state.user.token) {
+    //   setTimeout(()=>{
+    //     uni.navigateTo({url: "/pages/subpages/login/login"});
+    //   },2000)
+    //   return;
+    // }
+
     this.getList();
     api.notice(1).then((res) => {
       if (res.code === 200) this.notice = res.rows[0];
     });
     this.getBannerConfig();
-    if (!options.code) {
-      api.userInfo().then((res) => {
-        if (res.code === 200) this.info = res.data;
-      });
-    }
   },
   methods: {
     getBannerConfig() {
@@ -294,9 +296,7 @@ export default {
             };
           }
         });
-
         this.Listts = reload ? processedRows : [...this.Listts, ...processedRows];
-        console.log('处理后的数据:', this.Listts);
       });
     },
     // 格式化创建时间

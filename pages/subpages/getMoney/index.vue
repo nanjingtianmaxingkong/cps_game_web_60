@@ -263,7 +263,6 @@ export default {
 
 .section_8 {
   height: 1624rpx;
-  background: url(https://lanhu-oss-2537-2.lanhuapp.com/psaw1tbbm36zdygfdnjfactgomqpzqwe7d015b0b3-9557-48b7-8ba0-06b78cbdd7cb) 100% no-repeat;
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;
@@ -272,7 +271,6 @@ export default {
 
 .section_4 {
   height: 1624rpx;
-  background: url(https://lanhu-oss-2537-2.lanhuapp.com/ps47fooj9vokq5plgz8yaqw6l366tttp6wif27cbade-12c1-4a14-b785-607859e3a47d) 100% no-repeat;
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;

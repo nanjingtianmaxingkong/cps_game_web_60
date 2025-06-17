@@ -11,6 +11,7 @@
     "minified": false,
     "newFeature": true,
     "bigPackageSizeSupport": true,
+    "packNpmRelationList": [],
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -18,8 +19,8 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "3.8.7",
-  "appid": "wx7212335fa9515732",
+  "libVersion": "",
+  "appid": "wx52cfdac6317629b1",
   "projectname": "推游小助手",
   "condition": {
     "search": {

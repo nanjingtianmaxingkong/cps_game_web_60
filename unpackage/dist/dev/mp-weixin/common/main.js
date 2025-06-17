@@ -125,22 +125,21 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _index = _interopRequireDefault(__webpack_require__(/*! @/store/index.js */ 30));
 var _api = _interopRequireDefault(__webpack_require__(/*! @/js/api.js */ 40));
-var _config = _interopRequireDefault(__webpack_require__(/*! @/js/config.js */ 42));
 var _default = {
   onShow: function onShow(options) {
     if (options.path === 'pages/subpages/aboutMe/aboutMe') return;
-    var wxRefereeCode = options.query.code ? "_" + options.query.code : '';
-    console.log(options.query, "options.query");
-    var refereeCode = options.query.refereeCode;
-    if (refereeCode) {
-      refereeCode = "_" + refereeCode;
-      uni.setStorageSync('refereeCode', refereeCode);
+    // 已登录
+    if (_index.default.state.user.token) {
+      loadConfig();
+      return;
+    } else {
+      setTimeout(function () {
+        uni.navigateTo({
+          url: "/pages/subpages/login/login"
+        });
+      }, 2000);
+      // uni.navigateTo({url: "/pages/subpages/login/login"});
     }
-    uni.showLoading({
-      title: '自动加载中',
-      mask: true
-    });
-    var _this = this;
     // 登录后获取配置
     var loadConfig = function loadConfig() {
       _api.default.getData(null).then(function (res) {
@@ -154,64 +153,13 @@ var _default = {
           };
           _index.default.commit('setConfig', config);
           setTimeout(function () {
-            if (config.withdrawRadio == 0) {
-              uni.redirectTo({
-                url: "/pages/subpages/test/test"
-              });
-            } else {
-              uni.switchTab({
-                url: "/pages/subpages/index/index"
-              });
-            }
+            uni.switchTab({
+              url: "/pages/subpages/index/index"
+            });
           }, 200);
         }
       });
     };
-
-    // 封装登录函数
-    var handleLogin = function handleLogin(code) {
-      console.log(code, 'code');
-      var refereeCode = uni.getStorageSync('refereeCode');
-      if (refereeCode) {
-        code = code + refereeCode;
-      }
-      var params = {
-        data: code
-      };
-      _index.default.dispatch("login", params).then(function (res) {
-        if (res.code === 200) {
-          uni.hideLoading();
-          uni.showToast({
-            icon: 'success',
-            title: '自动登录成功'
-          });
-          loadConfig();
-        } else {
-          uni.hideLoading();
-          _this.Tips(res.msg);
-        }
-      });
-    };
-
-    // 已登录
-    if (_index.default.state.user.token) {
-      loadConfig();
-      return;
-    }
-    uni.login({
-      provider: 'weixin',
-      success: function success(loginRes) {
-        var code = loginRes.code + wxRefereeCode;
-        handleLogin(code);
-      },
-      fail: function fail() {
-        uni.hideLoading();
-        uni.showToast({
-          icon: 'none',
-          title: '游客模式'
-        });
-      }
-    });
   }
 };
 exports.default = _default;

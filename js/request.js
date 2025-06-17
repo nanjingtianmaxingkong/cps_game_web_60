@@ -25,7 +25,6 @@ export default async function request(url, data = {}, {
         }
         if (store.state.user.token) {
             header["Authorization"] = store.state.user.token
-            // header["Authorization"] = "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjE4MjcwNjg0NDI2NjU1Nzg0OTgifQ.Zc_Mamy81HAeyL490BlIYNq3r_B1gBfydL3ab9m8E3IE1OaFazDzlYu_VibbLkhgifPggg_tl4IvHor1-5Hg_Q"
         }
         // header["Authorization"] = "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjE5MTIxNTQ1OTM3MjczODE1MDUifQ.uhNznAUOeb8xdEH4EutcWjYCuIicTXWDtF5dNppO6n9RGWE4IrYO1PYbZCMQSC-WV2gk5RG58uPq2iO2zI_KEQ"
         uni.request({
@@ -36,10 +35,14 @@ export default async function request(url, data = {}, {
             params,
             success: (res) => {
                 loading && uni.hideLoading();
-                if (res.data.code != 200) {
+                if (res.data.code == 401){
+                    uni.navigateTo({url: "/pages/subpages/login/login"});
+                    return;
+                }else if (res.data.code == 200) {
+                    reslove(res.data);
+                }else {
                     showErrorMessage && Tips(res.data.msg);
                 }
-                reslove(res.data);
             },
             fail: (err) => {
                 Tips('您的网络异常，请稍后再试！');

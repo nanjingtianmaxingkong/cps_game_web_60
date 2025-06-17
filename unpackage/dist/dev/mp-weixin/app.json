@@ -1,14 +1,17 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/subpages/index/index",
     "pages/subpages/goodsList/goodsList",
     "pages/subpages/promotionData/promotionData",
     "pages/subpages/aboutMe/aboutMe",
     "pages/subpages/realName/realName",
+    "pages/subpages/login/login",
+    "pages/subpages/gameOrder/gameOrder",
+    "pages/subpages/withdraw/withdraw",
     "pages/subpages/getMoney/index",
     "pages/subpages/orderList/orderList",
     "pages/subpages/test/test",
+    "pages/subpages/withdrawRecord/withdrawRecord",
     "pages/subpages/search/search",
     "pages/subpages/commonH5/index",
     "pages/subpages/common/gameBriefly"

@@ -24,7 +24,7 @@
         :text="notice.noticeTitle"
     />
     </view>
-    <view class="body_order">
+    <view  @click="getOrderGame()" class="body_order">
       <view class="left_30 flex_center">
         <image src="@/static/game_cps/ioc/wangguan.png" class="body_order_wang " />
         <view class="body_order_text left_20">
@@ -200,17 +200,8 @@ export default {
     this.onRefresh()
   },
   methods: {
-    getSource(val) {
-      switch (val) {
-        case 1:
-          return "广告注册数据";
-        case 2:
-          return "广告回流数据";
-        case 3:
-          return "内购注册数据";
-        case 4:
-          return "内购回流数据";
-      }
+    getOrderGame(){
+      uni.navigateTo({url: '/pages/subpages/gameOrder/gameOrder'})
     },
     onRefresh() {
       this.pageNum = 1
