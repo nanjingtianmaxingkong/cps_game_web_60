@@ -208,6 +208,10 @@
 .left_150.data-v-71fb1f7a {
   margin-left: 110rpx;
 }
+.label_1.data-v-71fb1f7a {
+  width: 32rpx;
+  height: 32rpx;
+}
 .top-ser.data-v-71fb1f7a {
   width: 296rpx;
   height: 64rpx;
@@ -228,13 +232,6 @@
   background-size: 100% 100%;
   margin-left: 20rpx;
 }
-.top-classify.data-v-71fb1f7a {
-  width: 32rpx;
-  height: 32rpx;
-  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAfVJREFUWEftl79uE0EQxmfOthSgoYAijxCIzvKueQ4KpChVBEiRIggC0hKlIilxwZ8iBUSpIiTS5SEodnw+gdOkSJEOJFKQYMne+9AixfIdhrvEvkNC3u50s/P9buabXR0rpZ4x8yoRTVG+qwPguYisD8qw1vqUiC7lq93P/sMYczkJgILEf8kYY3gCMKlAsgJfiOhaQUb8aoy5HgOo1Wp3PM/bJqLYeOQAdBpF0UKz2fwQA3APvu/Plsvl98w8k4MwAdjv9XpzYRh+Subvz6Tv+1cqlcobIloYM8R2t9t9EIbhybC8sUPBBSil7jHzqzG05ATAIxF597cP+g3ABVer1ZulUsm15MZFqgGgba2da7Van9P2DwVwm7TWzpSviehuWpLE+y0iemiMcXdM6vojwNlOpVSDmZ+kZiJyZmuIyEqW2LOYLABPmflFlqQAVkSkkSV2AlBYBZRSm8x8n4hKidZYAG9z94BS6hszXx3mCwDHuQPU6/XbURTNM3OsAgCs53k7uQOkTcT/D/DPW1C0Cd3t527S/ipyDI8B3BKRgzTjDb4flwn3rLXLQRAcnkfcxY4KcATgsYjsnld41KO4B+Blp9NZa7fb3y8qnrUCi8y8OSDy0Vq7FARBMIpw5gpord0/wx4RTRPRhjHGwUTjEHc5fgJexCBwM1GoKgAAAABJRU5ErkJggg==);
-  background-size: 100% 100%;
-  margin-left: 20rpx;
-}
 .top-text.data-v-71fb1f7a {
   font-family: PingFangSC, PingFang SC;
   font-weight: 500;
@@ -243,6 +240,58 @@
   line-height: 40rpx;
   text-align: center;
   font-style: normal;
+}
+.text_10.data-v-71fb1f7a {
+  color: #FFFFFF;
+  font-size: 40rpx;
+  font-family: AlibabaPuHuiTi_2_75_SemiBold;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 44rpx;
+  margin: 15rpx 0 0 90rpx;
+}
+.text-wrapper_4.data-v-71fb1f7a {
+  width: 267rpx;
+  height: 67rpx;
+  background: linear-gradient(90deg, #AB78FD, #8167FC);
+  border-radius: 33rpx;
+  display: flex;
+  margin: 40rpx auto 0rpx;
+}
+.about_body.data-v-71fb1f7a {
+  width: 573rpx;
+  font-family: Alibaba PuHuiTi 2;
+  font-weight: normal;
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 36rpx;
+  display: flex;
+  justify-content: center;
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 40rpx auto 0rpx;
+}
+.about_us_text.data-v-71fb1f7a {
+  height: 30rpx;
+  font-family: Alibaba PuHuiTi 2;
+  font-weight: normal;
+  font-size: 32rpx;
+  color: #000000;
+  line-height: 36rpx;
+  display: flex;
+  justify-content: center;
+}
+.section_10.data-v-71fb1f7a {
+  width: 657rpx;
+  height: 1000rpx;
+  background: #FFFFFF;
+  border-radius: 33rpx;
+}
+.page.data-v-71fb1f7a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .item_content.data-v-71fb1f7a {
   width: 100%;
@@ -511,12 +560,13 @@ to {
   font-family: PingFangSC, PingFang SC;
 }
 .top_swiper_img.data-v-71fb1f7a {
+  white-space: nowrap;
   width: 100%;
   height: 333.33rpx;
 }
 .top_swiper_img1.data-v-71fb1f7a {
   width: 466.67rpx;
-  height: 100%;
+  height: 340rpx;
   border-radius: 40rpx;
 }
 .top_swiper_img1_body.data-v-71fb1f7a {

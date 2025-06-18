@@ -3,53 +3,55 @@
     <view class="flex_between top_20 left_20">
       <view class="top-ser flex_center_not_just">
         <view class="top-icon left_20" @click="onRefresh()"></view>
-        <input v-model="name" class="left_20" style="width: 596rpx" placeholder="请输入要找的游戏" @input="onRefresh" />
+        <input v-model="name" class="left_20" style="width: 596rpx" placeholder="请输入要找的游戏" @input="onRefresh"/>
       </view>
       <view class="flex_around" @click="open">
-        <view class="top-classify" />
+        <view class="top-classify"/>
         <view class="top-text left_10 right_20">筛选</view>
       </view>
     </view>
-
     <view class="body">
-      <view v-if="Lists.length > 8 && Lists[oc].banner">
-        <image class="bak center_margin top_20 left_20" :src="Lists[oc].banner" />
-      </view>
-      <view class="padding_20 flex_between" v-for="(item, index) in Lists" :key="index">
-        <image class="images-top_red top_10" :src="item.image"></image>
-        <view class="left_20" @click="getDetails(item)">
-          <view class="flex_center_not_just"><span class="body_item" style="overflow: hidden;width: 180rpx">{{ item.name
-              }}</span><span class="css_button_cyan left_20">{{ item.category2Name }}</span> <span
-              class="css_button_grey left_20">{{
-                item.category3Name
-              }}</span>
-          </view>
-          <!--        todo 世纪特供一  -->
-          <view>
-            <span class="text_24_grey">CPS+M 佣金结算</span><span class="text_24_grey left_40"
-              v-show="item.places <= 1">名额：</span>
-            <span class="text_24_green left_10">{{ item.places > 0 ? "名额充足" : item.places }}</span>
+      <view class="box_10 top_20" @click="getDetails(item)" v-for="(item, index) in Lists" :key="index">
+        <view class="flex_center right_20">
+          <image v-show="index == 0" src="@/static/game_cps/ioc/top1.png" class="image_top" lazy-load></image>
+          <image v-show="index == 1" src="@/static/game_cps/ioc/top2.png" class="image_top" lazy-load></image>
+          <image v-show="index == 2" src="@/static/game_cps/ioc/top3.png" class="image_top" lazy-load></image>
+          <view v-show="index  > 2" class="image_top_text">
+            {{ index + 1 }}
           </view>
         </view>
-        <view class="flex_around">
-<!--          <button class="css_button_gre_yuan_green_small left_20" @click="startGame(item.appId)">测评</button>-->
-          <button class="css_button_gre_yuan_green_more left_20"
-            @click="apply(item)">{{ getStatus(item.status) }}</button>
+        <image :src="item.image" class="image_12" lazy-load></image>
+        <view class="text-wrapper_12">
+          <view class="flex_center" style="height: 50rpx">
+            <text lines="1" class="paragraph_1">{{ item.name }}</text>
+            <view class="paragraph_jing_bei">
+              <view class="paragraph_jing">{{ item.category2Name }}</view>
+            </view>
+          </view>
+          <text lines="1" decode="true" class="text_23">
+            剩余名额: {{ item.places }}     分成: {{ item.cpsRegisteredRatio }}%
+          </text>
+        </view>
+        <view class="text-wrapper_37">
+          <text @click="startGame(item.appId)" lines="1" class="text_24">启动</text>
+        </view>
+        <view class="text-wrapper_38">
+          <text @click="apply(item)" lines="1" class="text_25">申请</text>
         </view>
       </view>
     </view>
     <uni-popup ref="popup" background-color="#F4F6F8">
       <view class="popup_body padding_20">
         <view class="popup_body-tie2 center_margin">筛选</view>
-        <view class="xian top_20" />
+        <view class="xian top_20"/>
         <view class="top_20">
           <view class="popup_body-tie">
             游戏类别
           </view>
           <view class="flex_bew_wrap">
             <view @click="setCategory(index)"
-              :class="category == index ? 'text1 active left_20 top_20' : 'text quanBu left_20 top_20'"
-              v-for="(item, index) in listC" :key="index">{{ item.name }}
+                  :class="category == index ? 'text1  left_20 top_20' : 'text left_20 top_20'"
+                  v-for="(item, index) in listC" :key="index">{{ item.name }}
             </view>
           </view>
         </view>
@@ -58,10 +60,14 @@
             申请状态
           </view>
           <view class="flex_bew_wrap top_20">
-            <view @click="setStatus(1)" :class="status == 1 ? 'text1 active left_20' : 'text quanBu left_20'">可申请</view>
-            <view @click="setStatus(2)" :class="status == 2 ? 'text1 active left_20' : 'text quanBu left_20'">已满</view>
-            <view @click="setStatus(3)" :class="status == 3 ? 'text1 active left_20' : 'text quanBu left_20'">成功</view>
-            <view @click="setStatus(4)" :class="status == 4 ? 'text1 active left_20' : 'text quanBu left_20'">申请中</view>
+            <view @click="setStatus(1)" :class="status == 1 ? 'text1  left_20' : 'text  left_20'">可申请
+            </view>
+            <view @click="setStatus(2)" :class="status == 2 ? 'text1  left_20' : 'text  left_20'">已满
+            </view>
+            <view @click="setStatus(3)" :class="status == 3 ? 'text1  left_20' : 'text  left_20'">成功
+            </view>
+            <view @click="setStatus(4)" :class="status == 4 ? 'text1  left_20' : 'text  left_20'">申请中
+            </view>
           </view>
         </view>
       </view>
@@ -174,7 +180,7 @@ export default {
       this.getList(true)
     },
     getList(reload = false) {
-      if(this.name){
+      if (this.name) {
         this.category2Id = null
       }
       api.gameList({
@@ -216,7 +222,7 @@ export default {
   height: 60rpx;
   background: #FFFFFF;
   border-radius: 10rpx;
-  border: 2rpx solid #5ACF86;
+  border: 2rpx solid #9966FF;
   z-index: 10;
 }
 
@@ -229,23 +235,36 @@ export default {
 }
 
 .text {
-  font-family: PingFangSC, PingFang SC;
-  font-weight: 400;
-  font-size: 28rpx;
-  color: #000000;
-  line-height: 60rpx;
+  min-width: 123rpx;
+  height: 67rpx;
+  background: #F2F2F2;
+  border-radius: 13rpx;
+  font-family: Alibaba PuHuiTi 2.0;
+  font-weight: normal;
+  font-size: 32rpx;
+  color: #666666;
   text-align: center;
-  font-style: normal;
+  line-height: 58rpx;
 }
 
 .text1 {
-  font-family: PingFangSC, PingFang SC;
-  font-weight: 400;
-  font-size: 28rpx;
-  color: #5ACF86;
-  line-height: 60rpx;
+  min-width: 123rpx;
+  height: 67rpx;
+  background: #F5EFFF;
+  border-radius: 13rpx;
+  font-family: Alibaba PuHuiTi 2.0;
+  font-weight: normal;
+  font-size: 32rpx;
+  color: #9966FF;
   text-align: center;
-  font-style: normal;
+  line-height: 58rpx;
+  //font-family: PingFangSC, PingFang SC;
+  //font-weight: 400;
+  //font-size: 28rpx;
+  //color: #5ACF86;
+  //line-height: 60rpx;
+  //text-align: center;
+  //font-style: normal;
 }
 
 .bak {
@@ -277,18 +296,23 @@ export default {
 }
 
 .popup_body {
-  height: 500rpx;
   background: #F4F6F8;
   border-radius: 40rpx 40rpx 0rpx 0rpx;
 
   &-tie {
-    font-family: PingFangSC, PingFang SC;
-    font-weight: 500;
-    font-size: 30rpx;
+    //font-family: PingFangSC, PingFang SC;
+    //font-weight: 500;
+    //font-size: 30rpx;
+    //color: #000000;
+    //line-height: 42rpx;
+    //text-align: left;
+    //font-style: normal;
+
+    font-family: Alibaba PuHuiTi 2.0;
+    font-weight: normal;
+    font-size: 32rpx;
     color: #000000;
-    line-height: 42rpx;
-    text-align: left;
-    font-style: normal;
+    line-height: 35rpx;
   }
 
   &-tie2 {
@@ -312,12 +336,149 @@ export default {
   }
 }
 
+.box_10 {
+  width: 720rpx;
+  height: 108rpx;
+  flex-direction: row;
+  display: flex;
+  margin: 33rpx auto 5rpx;
+}
+
+.image_12 {
+  width: 147rpx;
+  height: 108rpx;
+  border-radius: 20rpx;
+
+}
+
+.text_25 {
+  width: 49rpx;
+  height: 25rpx;
+  overflow-wrap: break-word;
+  color: rgba(153, 102, 255, 1);
+  font-size: 27rpx;
+  font-family: AlibabaPuHuiTi_2_75_SemiBold;
+  font-weight: normal;
+  text-align: left;
+  white-space: nowrap;
+  margin: 10rpx auto;
+}
+
+.text_24 {
+  width: 51rpx;
+  height: 25rpx;
+  overflow-wrap: break-word;
+  color: rgba(255, 255, 255, 1);
+  font-size: 27rpx;
+  font-family: AlibabaPuHuiTi_2_75_SemiBold;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  margin: 10rpx auto;
+}
+
+.image_top_text {
+  width: 52rpx;
+  height: 52rpx;
+  font-family: Alibaba PuHuiTi 2.0;
+  font-weight: normal;
+  text-align: center;
+  font-size: 32rpx;
+  color: #999999;
+  line-height: 36rpx;
+}
+
+.image_top {
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.text-wrapper_38 {
+  height: 57rpx;
+  background: #F5EFFF;
+  background-size: 100% 100%;
+  border-radius: 16rpx 30rpx 30rpx 16rpx;
+  display: flex;
+  flex-direction: column;
+  width: 120rpx;
+  margin: 25rpx 0 0 8rpx;
+}
+
+.text-wrapper_37 {
+  height: 57rpx;
+  background: #9966FF;
+  border-radius: 30rpx 16rpx 16rpx 30rpx;
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  width: 120rpx;
+  margin: 25rpx 0 0 8rpx;
+}
+
+.text_23 {
+  width: 261rpx;
+  height: 67rpx;
+  overflow-wrap: break-word;
+  color: rgba(153, 153, 153, 1);
+  font-size: 24rpx;
+  font-family: AlibabaPuHuiTi_2_55_Regular;
+  font-weight: normal;
+  text-align: left;
+  line-height: 40rpx;
+}
+
+.paragraph_jing {
+  font-family: Alibaba PuHuiTi 2.0;
+  font-weight: normal;
+  font-size: 24rpx;
+  color: #3399FF;
+  line-height: 44rpx;
+  margin-left: 10rpx;
+  margin-right: 10rpx;
+}
+
+.paragraph_jing_bei {
+  min-width: 73.33rpx;
+  background: #E5F5FF;
+  border-radius: 20rpx 20rpx 20rpx 0rpx;
+  margin-bottom: 40rpx;
+}
+
+.paragraph_1 {
+  width: 241rpx;
+  height: 67rpx;
+  overflow-wrap: break-word;
+  color: rgba(0, 0, 0, 1);
+  font-size: 32rpx;
+  font-family: AlibabaPuHuiTi_2_55_Regular;
+  font-weight: normal;
+  text-align: left;
+  line-height: 40rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.text-wrapper_12 {
+  width: 400rpx;
+  height: 67rpx;
+  overflow-wrap: break-word;
+  font-size: 0rpx;
+  font-family: AlibabaPuHuiTi_2_55_Regular;
+  font-weight: normal;
+  text-align: left;
+  line-height: 40rpx;
+  margin: 19rpx 0 0 20rpx;
+}
+
 .top {
   &-ser {
+    width: 567rpx;
+    height: 59rpx;
+    background: #F2F2F2;
+    border-radius: 29rpx;
     width: 596rpx;
     height: 64rpx;
-    background: #F4F6F8;
-    border-radius: 32rpx;
 
     font-family: PingFangSC, PingFang SC;
     font-weight: 400;
@@ -339,21 +500,20 @@ export default {
   &-classify {
     width: 32rpx;
     height: 32rpx;
-    background: url('@/static/game_cps/btn_primary_normal_screen@2x.png');
+    background: url('@/static/game_cps/btn_primary_normal_screen.png');
     background-size: 100% 100%;
     margin-left: 20rpx;
   }
 
   &-text {
-    font-family: PingFangSC, PingFang SC;
-    font-weight: 500;
-    font-size: 28rpx;
-    color: #333333;
-    line-height: 40rpx;
+    font-family: Alibaba PuHuiTi 2.0;
+    font-weight: normal;
+    font-size: 27rpx;
+    color: #9966FF;
+    line-height: 36rpx;
     text-align: center;
     font-style: normal;
   }
-
 }
 
 

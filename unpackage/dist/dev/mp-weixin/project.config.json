@@ -11,7 +11,6 @@
     "minified": false,
     "newFeature": true,
     "bigPackageSizeSupport": true,
-    "packNpmRelationList": [],
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
@@ -21,7 +20,7 @@
   "compileType": "miniprogram",
   "libVersion": "",
   "appid": "wx52cfdac6317629b1",
-  "projectname": "推游小助手",
+  "projectname": "月荔游戏",
   "condition": {
     "search": {
       "current": -1,

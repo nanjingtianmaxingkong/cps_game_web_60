@@ -5,7 +5,7 @@
       <image class="top" src="@/static/game_cps/bakimage.png">
         <view style="height: 100rpx"/>
         <view style="position: relative">
-          <view class="top-title">推游小助手</view>
+          <view class="top-title">月荔游戏</view>
           <view class="body center_margin">
             <view class="section_2">
               <view @click="goRealName" class="group_1">
@@ -207,7 +207,7 @@ export default {
   background: linear-gradient(90deg, #AB78FD, #8167FC);
   border-radius: 33rpx;
   display: flex;
-  margin: 50rpx auto 0rpx;
+  margin: 40rpx auto 0rpx;
 }
 
 .about_body {

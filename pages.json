@@ -109,7 +109,7 @@
     {
       "path": "pages/subpages/orderList/orderList",
       "style": {
-        "navigationBarTitleText": "推游小助手",
+        "navigationBarTitleText": "月荔游戏",
         "enablePullDownRefresh": true
       }
     },
@@ -135,7 +135,7 @@
     {
       "path": "pages/subpages/search/search",
       "style": {
-        "navigationBarTitleText": "搜索",
+        "navigationBarTitleText": "榜单",
         "enablePullDownRefresh": true
       }
     },

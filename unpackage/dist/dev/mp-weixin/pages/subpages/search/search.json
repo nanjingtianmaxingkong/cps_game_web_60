@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "搜索",
+  "navigationBarTitleText": "榜单",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "uni-popup": "/node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup"

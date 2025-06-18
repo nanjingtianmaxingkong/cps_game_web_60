@@ -106,9 +106,6 @@ try {
     uniPopup: function () {
       return __webpack_require__.e(/*! import() | node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup */ "node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-popup/uni-popup.vue */ 202))
     },
-    uniPopupDialog: function () {
-      return Promise.all(/*! import() | node-modules/@dcloudio/uni-ui/lib/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/@dcloudio/uni-ui/lib/uni-popup-dialog/uni-popup-dialog")]).then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-popup-dialog/uni-popup-dialog.vue */ 209))
-    },
   }
 } catch (e) {
   if (
@@ -131,7 +128,7 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.__map(_vm.Listts, function (item, index) {
+  var l0 = _vm.__map(_vm.recommendedGames, function (item, index) {
     var $orig = _vm.__get_orig(item)
     var m0 = item.mainImage1 ? _vm.getDateFrom(item.createTime) : null
     return {
@@ -188,7 +185,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
+/* WEBPACK VAR INJECTION */(function(wx, uni) {
 
 var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ 4);
 Object.defineProperty(exports, "__esModule", {
@@ -204,6 +201,20 @@ var _utils = __webpack_require__(/*! @/js/utils.js */ 51);
 var _config = _interopRequireDefault(__webpack_require__(/*! @/js/config.js */ 42));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+// 自定义防抖函数
+var debounce = function debounce(fn, delay) {
+  var timer;
+  return function () {
+    var _this = this;
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      return fn.apply(_this, args);
+    }, delay);
+  };
+};
 var _default = {
   computed: _objectSpread({}, (0, _vuex.mapState)({
     userInfo: function userInfo(state) {
@@ -223,108 +234,169 @@ var _default = {
       topTab: 1,
       notice: {},
       bannerList: [],
-      Listts: [],
-      noMore: false,
-      pageNum: 1,
-      pageSize: 10
+      recommendedGames: [],
+      // 原 Listts，按 ratioDesc 排序
+      sortedGames: [],
+      // 原 ListtsOrderId，按 sort 排序
+      pagination: {
+        recommendedGames: {
+          pageNum: 1,
+          pageSize: 10,
+          noMore: false,
+          hasData: true
+        },
+        sortedGames: {
+          pageNum: 1,
+          pageSize: 10,
+          noMore: false,
+          hasData: true
+        }
+      },
+      isLoading: false
     };
   },
   filters: {
     parseTime: _utils.parseTime
   },
   onLoad: function onLoad() {
-    var _this = this;
-    // 已登录
-    // if (!store.state.user.token) {
-    //   setTimeout(()=>{
-    //     uni.navigateTo({url: "/pages/subpages/login/login"});
-    //   },2000)
-    //   return;
-    // }
-
-    this.getList();
+    var _this2 = this;
+    this.fetchGames();
     _api.default.notice(1).then(function (res) {
-      if (res.code === 200) _this.notice = res.rows[0];
+      if (res.code === 200) _this2.notice = res.rows[0];
     });
     this.getBannerConfig();
   },
   methods: {
-    getBannerConfig: function getBannerConfig() {
-      var _this2 = this;
-      _api.default.getBannerConfig().then(function (res) {
-        if (res.code === 200) _this2.bannerList = res.data;
+    startGame: function startGame(val) {
+      wx.navigateToMiniProgram({
+        appId: val,
+        path: "/?wxgamepro=".concat(_config.default.BASE_CHANNEL),
+        //develop开发版；trial体验版；release正式版
+        envVersion: 'release',
+        success: function success(res) {
+          // 打开成功
+          console.log("跳转小程序成功！", res);
+        }
       });
     },
-    onRefresh: function onRefresh() {
-      this.pageNum = 1;
-      this.noMore = false;
-      this.getList(true);
+    goSearch: function goSearch() {
+      uni.navigateTo({
+        url: "/pages/subpages/search/search"
+      });
     },
-    getList: function getList() {
+    alertDialog5Close: function alertDialog5Close() {
+      this.$refs.alertDialog.close();
+    },
+    // 提取图片处理逻辑
+    processImages: function processImages(imgList) {
+      if (!imgList || imgList === '[]') return {
+        mainImage1: null,
+        mainImage2: null
+      };
+      try {
+        var _images$find, _images$find2;
+        var images = JSON.parse(imgList);
+        return {
+          mainImage1: ((_images$find = images.find(function (img) {
+            return img.direction === 1;
+          })) === null || _images$find === void 0 ? void 0 : _images$find.img_url) || null,
+          mainImage2: ((_images$find2 = images.find(function (img) {
+            return img.direction === 2;
+          })) === null || _images$find2 === void 0 ? void 0 : _images$find2.img_url) || null
+        };
+      } catch (e) {
+        console.error('解析imgList失败:', e);
+        return {
+          mainImage1: null,
+          mainImage2: null
+        };
+      }
+    },
+    // 通用的获取游戏列表方法
+    getGameList: function getGameList(sortWay, targetList) {
       var _this3 = this;
-      var reload = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-      _api.default.gameList({
-        name: this.name
-      }, this.pageNum).then(function (res) {
+      var reload = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+      var pagination = this.pagination[targetList];
+      var params = {
+        name: this.name,
+        params: {
+          sortWay: sortWay
+        }
+      };
+      return _api.default.gameList(params, pagination.pageNum).then(function (res) {
         if (reload) uni.stopPullDownRefresh();
-        if (res.rows.length < _this3.pageSize) _this3.noMore = true;
-
-        // 处理数据，分别提取 direction=1 和 direction=2 的第一张图片
         var processedRows = res.rows.map(function (item) {
-          if (!item.imgList || item.imgList === '[]') {
-            return _objectSpread(_objectSpread({}, item), {}, {
-              mainImage1: null,
-              // direction=1 的第一张图
-              mainImage2: null // direction=2 的第一张图
-            });
-          }
-
-          try {
-            var imgList = JSON.parse(item.imgList);
-
-            // 找到第一个 direction=1 的图片
-            var firstImage1 = imgList.find(function (img) {
-              return img.direction === 1;
-            });
-
-            // 找到第一个 direction=2 的图片
-            var firstImage2 = imgList.find(function (img) {
-              return img.direction === 2;
-            });
-            return _objectSpread(_objectSpread({}, item), {}, {
-              mainImage1: (firstImage1 === null || firstImage1 === void 0 ? void 0 : firstImage1.img_url) || null,
-              // 存入 direction=1 的第一张图
-              mainImage2: (firstImage2 === null || firstImage2 === void 0 ? void 0 : firstImage2.img_url) || null // 存入 direction=2 的第一张图
-            });
-          } catch (e) {
-            console.error('解析imgList失败:', e, '原始数据:', item.imgList);
-            return _objectSpread(_objectSpread({}, item), {}, {
-              mainImage1: null,
-              mainImage2: null
-            });
-          }
+          return _objectSpread(_objectSpread({}, item), _this3.processImages(item.imgList));
         });
-        _this3.Listts = reload ? processedRows : [].concat((0, _toConsumableArray2.default)(_this3.Listts), (0, _toConsumableArray2.default)(processedRows));
+        _this3[targetList] = reload ? processedRows : [].concat((0, _toConsumableArray2.default)(_this3[targetList]), (0, _toConsumableArray2.default)(processedRows));
+        pagination.hasData = res.rows.length > 0 || pagination.pageNum > 1;
+        pagination.noMore = res.rows.length < pagination.pageSize;
+      }).catch(function (error) {
+        console.error("\u83B7\u53D6\u6E38\u620F\u5217\u8868(".concat(sortWay, ")\u5931\u8D25:"), error);
+        uni.showToast({
+          title: '加载游戏列表失败',
+          icon: 'none'
+        });
+      });
+    },
+    // 批量获取游戏列表
+    fetchGames: function fetchGames() {
+      var _this4 = this;
+      var reload = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+      this.isLoading = true;
+      Promise.all([this.getGameList('ratioDesc', 'recommendedGames', reload), this.getGameList('sort', 'sortedGames', reload)]).finally(function () {
+        _this4.isLoading = false;
+      });
+    },
+    // 刷新列表
+    onRefresh: debounce(function () {
+      this.pagination.recommendedGames.pageNum = 1;
+      this.pagination.sortedGames.pageNum = 1;
+      this.pagination.recommendedGames.noMore = false;
+      this.pagination.sortedGames.noMore = false;
+      this.fetchGames(true);
+    }, 500),
+    // 触底加载更多
+    onReachBottom: function onReachBottom() {
+      if (!this.pagination.sortedGames.noMore) {
+        this.pagination.sortedGames.pageNum++;
+        this.getGameList('sort', 'sortedGames');
+      }
+      // 可选择是否加载 recommendedGames 的更多数据
+      // if (!this.pagination.recommendedGames.noMore) {
+      //   this.pagination.recommendedGames.pageNum++;
+      //   this.getGameList('ratioDesc', 'recommendedGames');
+      // }
+    },
+    // 获取banner配置
+    getBannerConfig: function getBannerConfig() {
+      var _this5 = this;
+      _api.default.getBannerConfig().then(function (res) {
+        if (res.code === 200) _this5.bannerList = res.data;
+      }).catch(function (error) {
+        console.error('获取banner配置失败:', error);
+        uni.showToast({
+          title: '加载banner失败',
+          icon: 'none'
+        });
       });
     },
     // 格式化创建时间
     getDateFrom: function getDateFrom(createDate) {
       if (!createDate) return '';
-      // 解析传入的时间（兼容ISO格式和字符串格式）
       var inputDate = new Date(createDate);
-      if (isNaN(inputDate.getTime())) return ''; // 无效日期处理
+      if (isNaN(inputDate.getTime())) return '';
       var today = new Date();
-      // 判断是否是今天（比较年月日）
       var isToday = inputDate.getDate() === today.getDate() && inputDate.getMonth() === today.getMonth() && inputDate.getFullYear() === today.getFullYear();
       if (isToday) {
         return '今天';
       } else {
-        // 返回格式：几月几号（如 5月6日）
-        var month = inputDate.getMonth() + 1; // 月份从0开始
+        var month = inputDate.getMonth() + 1;
         var day = inputDate.getDate();
         return "".concat(month, "\u6708").concat(day, "\u65E5");
       }
     },
+    // 跳转到H5页面
     goH5: function goH5(item) {
       if (item.configType === "1") {
         uni.navigateTo({
@@ -336,33 +408,36 @@ var _default = {
         });
       }
     },
-    goSer: function goSer(val) {
-      var url = val === 0 ? "/pages/subpages/search/search" : "/pages/subpages/search/search?category2Id=".concat(val);
-      uni.navigateTo({
-        url: url
+    apply: function apply(val) {
+      var _this6 = this;
+      var par = {
+        gameId: val.id
+      };
+      _api.default.cpsApplyOrder(par).then(function (res) {
+        if (res.code == 200) {
+          _this6.Tips("申请成功！");
+        }
       });
     },
+    // 查看游戏详情
     getDetails: function getDetails(item) {
       _index.default.commit("setGameDet", item);
       uni.navigateTo({
         url: "/pages/subpages/common/gameBriefly"
       });
     },
+    // 打开公告弹窗
     openPopup: function openPopup() {
       this.$refs.alertDialog.open();
     },
+    // 关闭公告弹窗
     closePo: function closePo() {
       this.$refs.alertDialog.close();
-    },
-    onReachBottom: function onReachBottom() {
-      if (this.noMore) return;
-      this.pageNum++;
-      this.getList();
     }
   }
 };
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/wx.js */ 1)["default"], __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 2)["default"]))
 
 /***/ }),
 

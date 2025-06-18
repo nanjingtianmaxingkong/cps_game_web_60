@@ -106,9 +106,6 @@ try {
     uniPopup: function () {
       return __webpack_require__.e(/*! import() | node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup */ "node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup").then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-popup/uni-popup.vue */ 202))
     },
-    uniPopupDialog: function () {
-      return Promise.all(/*! import() | node-modules/@dcloudio/uni-ui/lib/uni-popup-dialog/uni-popup-dialog */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/@dcloudio/uni-ui/lib/uni-popup-dialog/uni-popup-dialog")]).then(__webpack_require__.bind(null, /*! @dcloudio/uni-ui/lib/uni-popup-dialog/uni-popup-dialog.vue */ 209))
-    },
   }
 } catch (e) {
   if (
@@ -253,7 +250,7 @@ var _default = {
       console.log(res.target);
     }
     return {
-      title: '推游小助手',
+      title: '月荔游戏',
       path: "/pages/index/index?code=".concat(this.info.refereeCode),
       imageUrl: 'https://image.wyntf.cn/wl/zhu/shike.png'
     };
@@ -308,6 +305,9 @@ var _default = {
     });
   },
   methods: {
+    alertDialog5Close: function alertDialog5Close() {
+      this.$refs.alertDialog.close();
+    },
     getDetail: function getDetail() {
       uni.navigateTo({
         url: '/pages/subpages/orderList/orderList'

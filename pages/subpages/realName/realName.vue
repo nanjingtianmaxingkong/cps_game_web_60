@@ -6,7 +6,7 @@
         <view style="position: relative" >
           <view class="padding_20 flex_between padding_top_60">
             <view class="return_ioc1" @click="goBack()"/>
-            <view class="center_margin text_top">推游小助手</view>
+            <view class="center_margin text_top">月荔游戏</view>
             <view style="width: 48rpx"/>
           </view>
 

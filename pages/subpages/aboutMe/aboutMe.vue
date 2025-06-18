@@ -4,7 +4,7 @@
       <image class="top" src="@/static/game_cps/bakimage.png">
         <view style="height: 100rpx"/>
         <view style="position: relative">
-          <view class="top-title">推游小助手</view>
+          <view class="top-title">月荔游戏</view>
           <view  @click="withdrawRecord()" class="top_title_top top_20">
             <view  class="bang_body left_20">
               <image class="fu_image top_30" src="@/static/game_cps/goodslist/dibuioc.png">
@@ -191,7 +191,7 @@
       <!--          <l-painter-image :src="haibaoDetail.imgUrl"-->
       <!--                           css="object-fit: cover; object-position: 50% 50%; width: 606rpx; height: 606rpx; border-radius: 12rpx;"/>-->
       <!--          <l-painter-view css="margin-top: 32rpx; font-size: 26rpx; color: #8c5400">-->
-      <!--            <l-painter-text text="推游小助手" css="color: #212121; background: #ffb400;"/>-->
+      <!--            <l-painter-text text="月荔游戏" css="color: #212121; background: #ffb400;"/>-->
       <!--            <l-painter-text text="超多游戏福利" css="margin-left: 16rpx; background: #fff4d9"/>-->
       <!--            <l-painter-text text="分享有礼" css="margin-left: 16rpx; background: #fff4d9"/>-->
       <!--          </l-painter-view>-->
@@ -348,7 +348,7 @@ export default {
       console.log(res.target)
     }
     return {
-      title: '推游小助手',
+      title: '月荔游戏',
       path: `/pages/index/index?code=${this.info.refereeCode}`,
       imageUrl: 'https://image.wyntf.cn/wl/zhu/shike.png',
     }

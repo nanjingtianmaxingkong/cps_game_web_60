@@ -29,27 +29,27 @@
 
     <view class="text-wrapper_4">
       <text lines="1" class="text_9">全部</text>
-      <text lines="1" class="text_11">提现中</text>
-      <text lines="1" class="text_11">待收款</text>
+<!--      <text lines="1" class="text_11">提现中</text>-->
+<!--      <text lines="1" class="text_11">待收款</text>-->
       <text lines="1" class="text_12">提现成功</text>
       <text lines="1" class="text_13">提现失败</text>
     </view>
-    <view class="text-wrapper_5">
-      <text lines="1" class="text_14">提现</text>
-      <text lines="1" class="text_15">300.90</text>
-    </view>
-    <text lines="1" decode="true" class="text_16">今天&nbsp;11:30</text>
-    <view class="box_4"></view>
-    <view class="text-wrapper_6">
-      <text lines="1" class="text_17">提现</text>
-      <text lines="1" class="text_18">300.90</text>
-    </view>
-    <text lines="1" decode="true" class="text_19">今天&nbsp;11:30</text>
-    <view class="box_5"></view>
-    <view class="text-wrapper_7">
-      <text lines="1" class="text_20">提现</text>
-      <text lines="1" class="text_21">300.90</text>
-    </view>
+<!--    <view class="text-wrapper_5">-->
+<!--      <text lines="1" class="text_14">提现</text>-->
+<!--      <text lines="1" class="text_15">300.90</text>-->
+<!--    </view>-->
+<!--    <text lines="1" decode="true" class="text_16">今天&nbsp;11:30</text>-->
+<!--    <view class="box_4"></view>-->
+<!--    <view class="text-wrapper_6">-->
+<!--      <text lines="1" class="text_17">提现</text>-->
+<!--      <text lines="1" class="text_18">300.90</text>-->
+<!--    </view>-->
+<!--    <text lines="1" decode="true" class="text_19">今天&nbsp;11:30</text>-->
+<!--    <view class="box_5"></view>-->
+<!--    <view class="text-wrapper_7">-->
+<!--      <text lines="1" class="text_20">提现</text>-->
+<!--      <text lines="1" class="text_21">300.90</text>-->
+<!--    </view>-->
 
     <uni-popup ref="alertDialog5" :is-mask-click="true" background-color="transparent">
       <view class="page">

@@ -2,7 +2,7 @@
   <view>
     <view style="height: 100rpx"/>
     <view style="position: relative">
-      <view class="top-title">推游小助手</view>
+      <view class="top-title">月荔游戏</view>
     </view>
 
     <view class="box_3">
@@ -160,7 +160,7 @@ export default {
       console.log(res.target)
     }
     return {
-      title: '推游小助手',
+      title: '月荔游戏',
       path: `/pages/index/index?code=${this.info.refereeCode}`,
       imageUrl: 'https://image.wyntf.cn/wl/zhu/shike.png',
     }

@@ -5,7 +5,6 @@
   "usingComponents": {
     "uni-notice-bar": "/node-modules/@dcloudio/uni-ui/lib/uni-notice-bar/uni-notice-bar",
     "uni-popup": "/node-modules/@dcloudio/uni-ui/lib/uni-popup/uni-popup",
-    "uni-popup-dialog": "/node-modules/@dcloudio/uni-ui/lib/uni-popup-dialog/uni-popup-dialog",
     "my-process": "/pages/subpages/common/myProcess",
     "l-painter-text": "/uni_modules/lime-painter/components/l-painter-text/l-painter-text",
     "l-painter-view": "/uni_modules/lime-painter/components/l-painter-view/l-painter-view",

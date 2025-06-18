@@ -346,7 +346,7 @@ var _default = {
       console.log(res.target);
     }
     return {
-      title: '推游小助手',
+      title: '月荔游戏',
       path: "/pages/index/index?code=".concat(this.info.refereeCode),
       imageUrl: 'https://image.wyntf.cn/wl/zhu/shike.png'
     };

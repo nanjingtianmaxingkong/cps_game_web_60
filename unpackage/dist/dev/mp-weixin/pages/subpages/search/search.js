@@ -125,24 +125,6 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var g0 = _vm.Lists.length > 8 && _vm.Lists[_vm.oc].banner
-  var l0 = _vm.__map(_vm.Lists, function (item, index) {
-    var $orig = _vm.__get_orig(item)
-    var m0 = _vm.getStatus(item.status)
-    return {
-      $orig: $orig,
-      m0: m0,
-    }
-  })
-  _vm.$mp.data = Object.assign(
-    {},
-    {
-      $root: {
-        g0: g0,
-        l0: l0,
-      },
-    }
-  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -187,6 +169,12 @@ var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/
 var _index = _interopRequireDefault(__webpack_require__(/*! @/store/index.js */ 30));
 var _api = _interopRequireDefault(__webpack_require__(/*! @/js/api.js */ 40));
 var _config = _interopRequireDefault(__webpack_require__(/*! @/js/config.js */ 42));
+//
+//
+//
+//
+//
+//
 //
 //
 //

@@ -66,6 +66,9 @@
 .top_50{
     margin-top: 50rpx;
 }
+.top_70{
+    margin-top: 70rpx;
+}
 .top_100{
     margin-top: 100rpx;
 }
@@ -112,6 +115,9 @@
 
 .right_20{
     margin-right: 20rpx;
+}
+.right_25{
+    margin-right: 25rpx;
 }
 .padding_20{
     padding: 20rpx;

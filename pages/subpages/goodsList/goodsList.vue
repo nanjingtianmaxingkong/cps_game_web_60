@@ -2,7 +2,7 @@
   <view>
     <view style="height: 100rpx"/>
     <view style="position: relative">
-      <view class="top-title">推游小助手</view>
+      <view class="top-title">月荔游戏</view>
       <view v-if="notice" class="top-notice">
         <uni-notice-bar
             @click="openPopup()"
@@ -149,12 +149,26 @@
           </view>
         </view>
       </view>
-      <uni-popup ref="alertDialog">
-        <uni-popup-dialog v-if="notice" type="success" cancelText="取消" confirmText="我已知晓"
-                          @confirm="closePo()">
-          <view v-html="notice.noticeContent"></view>
-        </uni-popup-dialog>
+      <uni-popup ref="alertDialog" :is-mask-click="true" background-color="transparent">
+        <view class="page">
+          <view class="section_10">
+            <view class="about_us_text top_40">
+              通知
+            </view>
+            <view   v-html="notice.noticeContent" class="about_body">
+            </view>
+            <view @click="alertDialog5Close" class="text-wrapper_4 ">
+              <text lines="1" class="text_10">确定</text>
+            </view>
+          </view>
+        </view>
       </uni-popup>
+<!--      <uni-popup ref="alertDialog">-->
+<!--        <uni-popup-dialog v-if="notice" type="success" cancelText="取消" confirmText="我已知晓"-->
+<!--                          @confirm="closePo()">-->
+<!--          <view v-html="notice.noticeContent"></view>-->
+<!--        </uni-popup-dialog>-->
+<!--      </uni-popup>-->
     </view>
   </view>
 </template>
@@ -211,7 +225,7 @@ export default {
       console.log(res.target)
     }
     return {
-      title: '推游小助手',
+      title: '月荔游戏',
       path: `/pages/index/index?code=${this.info.refereeCode}`,
       imageUrl: 'https://image.wyntf.cn/wl/zhu/shike.png',
     }
@@ -263,6 +277,9 @@ export default {
     })
   },
   methods: {
+    alertDialog5Close() {
+      this.$refs.alertDialog.close();
+    },
     getDetail() {
       uni.navigateTo({url: '/pages/subpages/orderList/orderList'})
     },
@@ -679,6 +696,61 @@ export default {
   height: 300rpx;
   background: #F8F9FA;
   border-radius: 12rpx;
+}
+
+.text_10 {
+  color: #FFFFFF;
+  font-size: 40rpx;
+  font-family: AlibabaPuHuiTi_2_75_SemiBold;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 44rpx;
+  margin: 15rpx 0 0 90rpx;
+}
+.text-wrapper_4 {
+  width: 267rpx;
+  height: 67rpx;
+  background: linear-gradient(90deg, #AB78FD, #8167FC);
+  border-radius: 33rpx;
+  display: flex;
+  margin: 40rpx auto 0rpx;
+}
+
+.about_body {
+  width: 573rpx;
+  font-family: Alibaba PuHuiTi 2.0;
+  font-weight: normal;
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 36rpx;
+  display: flex;
+  justify-content: center;
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 40rpx auto 0rpx;
+}
+.about_us_text {
+  height: 30rpx;
+  font-family: Alibaba PuHuiTi 2.0;
+  font-weight: normal;
+  font-size: 32rpx;
+  color: #000000;
+  line-height: 36rpx;
+  display: flex;
+  justify-content: center;
+}
+.section_10 {
+  width: 657rpx;
+  height: 1000rpx;
+  background: #FFFFFF;
+  border-radius: 33rpx;
+}
+.page {
+  //position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 ::v-deep .uni-noticebar {

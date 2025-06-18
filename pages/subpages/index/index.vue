@@ -1,11 +1,9 @@
 <template>
   <view class="content">
-    <view
-        class="top"
-    >
+    <view class="top">
       <view style="position: relative">
         <view style="height: 100rpx"/>
-        <view class="top-title">推游小助手</view>
+        <view class="top-title">月荔游戏</view>
         <view class="flex_between">
           <view class="flex_center">
             <view @click="()=>{topTab = 1}" :class="topTab != 1? 'top-false':'top-true'">
@@ -17,7 +15,7 @@
           </view>
           <view>
             <view class="top-ser right_20 flex_center_not_just">
-              <view class="top-icon left_20" @click="onRefresh()"/>
+              <view class="top-icon left_20" @click="onRefresh"/>
               <input
                   v-model="name"
                   class="left_20"
@@ -40,40 +38,42 @@
           />
         </view>
         <view v-show="topTab == 1">
-          <scroll-view class="top_swiper_img" scroll-x="true" scroll-left="120">
+          <scroll-view class="scroll-view_H" scroll-x="true" scroll-left="120">
             <view
                 v-for="(item, index) in bannerList"
                 :key="index"
-                class="top_swiper_img1 "
+                class="scroll-view-item_H uni-bg-red"
             >
               <image
                   @click="goH5(item)"
                   class="top_swiper_img1 left_20"
                   :src="item.configKey"
+                  lazy-load
               />
-              </view>
+            </view>
           </scroll-view>
-          <!--  todo 测试图片          https://apk.zhizuan.xyz/juimage.png-->
-          <view class="top_50">
+          <view  @click="goSearch()" class=" top_50">
             <view class="body-top-text left_25">最新上架</view>
+<!--            <image src="@/static/game_cps/money/zuo.png" class="label_1 right_25"></image>-->
           </view>
           <view>
             <scroll-view class="scroll-view_H" scroll-x="true" scroll-left="120">
               <view
-                  v-for="(item, index) in Listts"
+                  v-for="(item, index) in recommendedGames"
                   :key="index"
                   class="scroll-view-item_H uni-bg-red"
               >
                 <view v-if="item.mainImage1">
                   <view class="body1-today">
-                   {{getDateFrom(item.createTime)}}
+                    {{ getDateFrom(item.createTime) }}
                   </view>
                   <image
                       @click="getDetails(item)"
                       class="top_swiper_img2 left_20"
                       :src="item.mainImage1"
+                      lazy-load
                   />
-                  <view class="body1-application">
+                  <view @click="apply(item)" class="body1-application">
                     申请
                   </view>
                   <view class="body1-gameName">
@@ -83,51 +83,48 @@
               </view>
             </scroll-view>
           </view>
-
-          <view class="top_50">
+          <view  @click="goSearch()" class="flex_between top_50">
             <view class="body-top-text left_25">热门推荐</view>
+            <image src="@/static/game_cps/money/zuo.png" class="label_1 right_25"></image>
           </view>
-
-          <image class="body-bak-image left_25 top_30" src="https://apk.zhizuan.xyz/bakimage.png">
-            <scroll-view class="scroll-view_H1 left_25" scroll-x="true" scroll-left="120">
-              <view
-                  v-for="(item, index) in Listts"
-                  :key="index"
-                  class="scroll-view-item_H1 uni-bg-red"
-              >
-                <image
-                    @click="getDetails(item)"
-                    class="body_imges_img top_200 left_20"
-                    :src="item.image"
-                />
-              </view>
-            </scroll-view>
-
-            <scroll-view class="scroll-view_H1 left_25" scroll-x="true" scroll-left="220">
-              <view
-                  class="scroll-view-item_H1 uni-bg-red"
-              >
+          <view style="height: 683.33rpx">
+            <image class="body-bak-image left_25 top_30" src="https://apk.zhizuan.xyz/bakimage.png">
+              <scroll-view class="scroll-view_H1 left_25" scroll-x="true" scroll-left="120">
                 <view
-                    class="body_imges_img top_50 left_20"
-                />
-              </view>
-              <view
-                  v-for="(item, index) in Listts"
-                  :key="index"
-                  class="scroll-view-item_H1 uni-bg-red"
-              >
-                <image
-                    @click="getDetails(item)"
-                    class="body_imges_img top_50 left_20"
-                    :src="item.image"
-                />
-              </view>
-            </scroll-view>
-          </image>
-          <view class="index_flex_body padding_25">
-            <view class="top_50">
-              <view class="body-top-text left_25">榜单</view>
-            </view>
+                    v-for="(item, index) in recommendedGames"
+                    :key="index"
+                    class="scroll-view-item_H1 uni-bg-red"
+                >
+                  <image
+                      @click="getDetails(item)"
+                      class="body_imges_img top_200 left_20"
+                      :src="item.image"
+                      lazy-load
+                  />
+                </view>
+              </scroll-view>
+              <scroll-view class="scroll-view_H1 left_25" scroll-x="true" scroll-left="220">
+                <view class="scroll-view-item_H1 uni-bg-red">
+                  <view class="body_imges_img top_50 left_20"/>
+                </view>
+                <view
+                    v-for="(item, index) in sortedGames"
+                    :key="index"
+                    class="scroll-view-item_H1 uni-bg-red"
+                >
+                  <image
+                      @click="getDetails(item)"
+                      class="body_imges_img top_50 left_20"
+                      :src="item.image"
+                      lazy-load
+                  />
+                </view>
+              </scroll-view>
+            </image>
+          </view>
+          <view  @click="goSearch()" class="flex_between top_70">
+            <view class="body-top-text left_25">榜单</view>
+            <image src="@/static/game_cps/money/zuo.png" class="label_1 right_25"></image>
           </view>
         </view>
         <view v-show="topTab != 1">
@@ -139,7 +136,7 @@
           </view>
           <scroll-view class="scroll-view_H top_40" scroll-x="true" scroll-left="120">
             <view
-                v-for="(item, index) in Listts"
+                v-for="(item, index) in recommendedGames"
                 :key="index"
                 class="scroll-view-item_H uni-bg-red"
             >
@@ -148,8 +145,9 @@
                     @click="getDetails(item)"
                     class="top_swiper_img3 left_20"
                     :src="item.mainImage2"
+                    lazy-load
                 />
-            </view>
+              </view>
             </view>
           </scroll-view>
           <view class="pay_game_text left_25 top_50">
@@ -159,54 +157,77 @@
             为了胜利，一决高下！
           </view>
         </view>
-
-        <view class="box_10"
-              v-for="(item, index) in Listts"
+        <view/>
+        <view style="height: 10rpx">
+        </view>
+        <view class="box_10 top_20"
+              v-for="(item, index) in sortedGames"
               :key="index">
-          <image :src="item.image" class="image_12"></image>
+          <image :src="item.image" class="image_12" lazy-load></image>
           <view class="text-wrapper_12">
-            <view class="flex_center">
+            <view class="flex_center" style="height: 50rpx">
               <text lines="1" class="paragraph_1">{{ item.name }}</text>
               <view class="paragraph_jing_bei">
-                <view class="paragraph_jing">{{item.category2Name}}</view>
+                <view class="paragraph_jing">{{ item.category2Name }}</view>
               </view>
             </view>
             <text lines="1" decode="true" class="text_23">
-              剩余名额:&nbsp;{{ item.places }} &nbsp;&nbsp;&nbsp; 分成:{{ item.cpsRegisteredRatio }}%
+              剩余名额: {{ item.places }}     分成: {{ item.cpsRegisteredRatio }}%
             </text>
           </view>
           <view class="text-wrapper_37">
-            <text lines="1" class="text_24">启动</text>
+            <text @click="startGame(item.appId)" lines="1" class="text_24">启动</text>
           </view>
           <view class="text-wrapper_38">
-            <text lines="1" class="text_25">申请</text>
+            <text @click="apply(item)" lines="1" class="text_25">申请</text>
           </view>
         </view>
       </view>
     </view>
-
-    <uni-popup ref="alertDialog">
-      <uni-popup-dialog
-          type="success"
-          cancelText="取消"
-          confirmText="我已知晓"
-          @confirm="closePo()"
-      >
-        <view
-            v-html="notice.noticeContent"
-            style="max-height: 400px; overflow-y: auto;"
-        />
-      </uni-popup-dialog>
+    <uni-popup ref="alertDialog" :is-mask-click="true" background-color="transparent">
+      <view class="page">
+        <view class="section_10">
+          <view class="about_us_text top_40">
+            通知
+          </view>
+          <view   v-html="notice.noticeContent" class="about_body">
+          </view>
+          <view @click="alertDialog5Close" class="text-wrapper_4 ">
+            <text lines="1" class="text_10">确定</text>
+          </view>
+        </view>
+      </view>
     </uni-popup>
+<!--    <uni-popup ref="alertDialog">-->
+<!--      <uni-popup-dialog-->
+<!--          type="success"-->
+<!--          cancelText="取消"-->
+<!--          confirmText="我已知晓"-->
+<!--          @confirm="closePo"-->
+<!--      >-->
+<!--        <view-->
+<!--            v-html="notice.noticeContent"-->
+<!--            style="max-height: 400px; overflow-y: auto;"-->
+<!--        />-->
+<!--      </uni-popup-dialog>-->
+<!--    </uni-popup>-->
   </view>
 </template>
 
 <script>
 import store from "@/store/index.js";
 import api from "@/js/api.js";
-import {mapState} from "vuex";
-import {parseTime, copy} from "@/js/utils.js";
-import env from "@/js/config.js";
+import { mapState } from "vuex";
+import { parseTime } from "@/js/utils.js";
+import env from "@/js/config.js"
+// 自定义防抖函数
+const debounce = (fn, delay) => {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), delay);
+  };
+};
 
 export default {
   computed: {
@@ -223,90 +244,121 @@ export default {
       topTab: 1,
       notice: {},
       bannerList: [],
-      Listts: [],
-      noMore: false,
-      pageNum: 1,
-      pageSize: 10,
+      recommendedGames: [], // 原 Listts，按 ratioDesc 排序
+      sortedGames: [], // 原 ListtsOrderId，按 sort 排序
+      pagination: {
+        recommendedGames: { pageNum: 1, pageSize: 10, noMore: false, hasData: true },
+        sortedGames: { pageNum: 1, pageSize: 10, noMore: false, hasData: true },
+      },
+      isLoading: false,
     };
   },
   filters: {
     parseTime,
   },
   onLoad() {
-    // 已登录
-    // if (!store.state.user.token) {
-    //   setTimeout(()=>{
-    //     uni.navigateTo({url: "/pages/subpages/login/login"});
-    //   },2000)
-    //   return;
-    // }
-
-    this.getList();
+    this.fetchGames();
     api.notice(1).then((res) => {
       if (res.code === 200) this.notice = res.rows[0];
     });
     this.getBannerConfig();
   },
   methods: {
+    startGame(val) {
+      wx.navigateToMiniProgram({
+        appId: val,
+        path: `/?wxgamepro=${env.BASE_CHANNEL}`,
+        //develop开发版；trial体验版；release正式版
+        envVersion: 'release',
+        success(res) {
+          // 打开成功
+          console.log("跳转小程序成功！", res);
+        }
+      })
+    },
+    goSearch(){
+      uni.navigateTo({ url: "/pages/subpages/search/search" });
+    },
+    alertDialog5Close() {
+      this.$refs.alertDialog.close();
+    },
+    // 提取图片处理逻辑
+    processImages(imgList) {
+      if (!imgList || imgList === '[]') return { mainImage1: null, mainImage2: null };
+      try {
+        const images = JSON.parse(imgList);
+        return {
+          mainImage1: images.find(img => img.direction === 1)?.img_url || null,
+          mainImage2: images.find(img => img.direction === 2)?.img_url || null,
+        };
+      } catch (e) {
+        console.error('解析imgList失败:', e);
+        return { mainImage1: null, mainImage2: null };
+      }
+    },
+    // 通用的获取游戏列表方法
+    getGameList(sortWay, targetList, reload = false) {
+      const pagination = this.pagination[targetList];
+      const params = { name: this.name, params: { sortWay } };
+      return api.gameList(params, pagination.pageNum).then((res) => {
+        if (reload) uni.stopPullDownRefresh();
+        const processedRows = res.rows.map(item => ({
+          ...item,
+          ...this.processImages(item.imgList),
+        }));
+        this[targetList] = reload ? processedRows : [...this[targetList], ...processedRows];
+        pagination.hasData = res.rows.length > 0 || pagination.pageNum > 1;
+        pagination.noMore = res.rows.length < pagination.pageSize;
+      }).catch(error => {
+        console.error(`获取游戏列表(${sortWay})失败:`, error);
+        uni.showToast({ title: '加载游戏列表失败', icon: 'none' });
+      });
+    },
+    // 批量获取游戏列表
+    fetchGames(reload = false) {
+      this.isLoading = true;
+      Promise.all([
+        this.getGameList('ratioDesc', 'recommendedGames', reload),
+        this.getGameList('sort', 'sortedGames', reload),
+      ]).finally(() => {
+        this.isLoading = false;
+      });
+    },
+    // 刷新列表
+    onRefresh: debounce(function() {
+      this.pagination.recommendedGames.pageNum = 1;
+      this.pagination.sortedGames.pageNum = 1;
+      this.pagination.recommendedGames.noMore = false;
+      this.pagination.sortedGames.noMore = false;
+      this.fetchGames(true);
+    }, 500),
+    // 触底加载更多
+    onReachBottom() {
+      if (!this.pagination.sortedGames.noMore) {
+        this.pagination.sortedGames.pageNum++;
+        this.getGameList('sort', 'sortedGames');
+      }
+      // 可选择是否加载 recommendedGames 的更多数据
+      // if (!this.pagination.recommendedGames.noMore) {
+      //   this.pagination.recommendedGames.pageNum++;
+      //   this.getGameList('ratioDesc', 'recommendedGames');
+      // }
+    },
+    // 获取banner配置
     getBannerConfig() {
       api.getBannerConfig().then((res) => {
         if (res.code === 200) this.bannerList = res.data;
-      });
-    },
-    onRefresh() {
-      this.pageNum = 1;
-      this.noMore = false;
-      this.getList(true);
-    },
-    getList(reload = false) {
-      api.gameList({ name: this.name }, this.pageNum).then((res) => {
-        if (reload) uni.stopPullDownRefresh();
-        if (res.rows.length < this.pageSize) this.noMore = true;
-
-        // 处理数据，分别提取 direction=1 和 direction=2 的第一张图片
-        const processedRows = res.rows.map(item => {
-          if (!item.imgList || item.imgList === '[]') {
-            return {
-              ...item,
-              mainImage1: null,  // direction=1 的第一张图
-              mainImage2: null   // direction=2 的第一张图
-            };
-          }
-
-          try {
-            const imgList = JSON.parse(item.imgList);
-
-            // 找到第一个 direction=1 的图片
-            const firstImage1 = imgList.find(img => img.direction === 1);
-
-            // 找到第一个 direction=2 的图片
-            const firstImage2 = imgList.find(img => img.direction === 2);
-
-            return {
-              ...item,
-              mainImage1: firstImage1?.img_url || null,  // 存入 direction=1 的第一张图
-              mainImage2: firstImage2?.img_url || null   // 存入 direction=2 的第一张图
-            };
-          } catch (e) {
-            console.error('解析imgList失败:', e, '原始数据:', item.imgList);
-            return {
-              ...item,
-              mainImage1: null,
-              mainImage2: null
-            };
-          }
-        });
-        this.Listts = reload ? processedRows : [...this.Listts, ...processedRows];
+      }).catch(error => {
+        console.error('获取banner配置失败:', error);
+        uni.showToast({ title: '加载banner失败', icon: 'none' });
       });
     },
     // 格式化创建时间
     getDateFrom(createDate) {
       if (!createDate) return '';
-      // 解析传入的时间（兼容ISO格式和字符串格式）
       const inputDate = new Date(createDate);
-      if (isNaN(inputDate.getTime())) return ''; // 无效日期处理
+      if (isNaN(inputDate.getTime())) return '';
       const today = new Date();
-      // 判断是否是今天（比较年月日）
       const isToday =
           inputDate.getDate() === today.getDate() &&
           inputDate.getMonth() === today.getMonth() &&
@@ -314,39 +366,41 @@ export default {
       if (isToday) {
         return '今天';
       } else {
-        // 返回格式：几月几号（如 5月6日）
-        const month = inputDate.getMonth() + 1; // 月份从0开始
+        const month = inputDate.getMonth() + 1;
         const day = inputDate.getDate();
         return `${month}月${day}日`;
       }
     },
+    // 跳转到H5页面
     goH5(item) {
       if (item.configType === "1") {
-        uni.navigateTo({url: `/pages/subpages/commonH5/index?url=${item.configValue}`});
+        uni.navigateTo({ url: `/pages/subpages/commonH5/index?url=${item.configValue}` });
       } else {
-        uni.switchTab({url: item.configValue});
+        uni.switchTab({ url: item.configValue });
       }
     },
-    goSer(val) {
-      const url = val === 0
-          ? "/pages/subpages/search/search"
-          : `/pages/subpages/search/search?category2Id=${val}`;
-      uni.navigateTo({url});
+    apply(val) {
+      let par = {
+        gameId: val.id,
+      }
+      api.cpsApplyOrder(par).then(res => {
+        if (res.code == 200) {
+          this.Tips("申请成功！")
+        }
+      })
     },
+    // 查看游戏详情
     getDetails(item) {
       store.commit("setGameDet", item);
-      uni.navigateTo({url: "/pages/subpages/common/gameBriefly"});
+      uni.navigateTo({ url: "/pages/subpages/common/gameBriefly" });
     },
+    // 打开公告弹窗
     openPopup() {
       this.$refs.alertDialog.open();
     },
+    // 关闭公告弹窗
     closePo() {
       this.$refs.alertDialog.close();
-    },
-    onReachBottom() {
-      if (this.noMore) return;
-      this.pageNum++;
-      this.getList();
     },
   },
 };
@@ -563,7 +617,10 @@ export default {
 .left_150 {
   margin-left: 110rpx;
 }
-
+.label_1 {
+  width: 32rpx;
+  height: 32rpx;
+}
 .top {
   &-ser {
     width: 296rpx;
@@ -587,13 +644,6 @@ export default {
     margin-left: 20rpx;
   }
 
-  &-classify {
-    width: 32rpx;
-    height: 32rpx;
-    background: url('@/static/game_cps/btn_primary_normal_screen@2x.png');
-    background-size: 100% 100%;
-    margin-left: 20rpx;
-  }
 
   &-text {
     font-family: PingFangSC, PingFang SC;
@@ -607,13 +657,67 @@ export default {
 
 }
 
+.text_10 {
+  color: #FFFFFF;
+  font-size: 40rpx;
+  font-family: AlibabaPuHuiTi_2_75_SemiBold;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  line-height: 44rpx;
+  margin: 15rpx 0 0 90rpx;
+}
+.text-wrapper_4 {
+  width: 267rpx;
+  height: 67rpx;
+  background: linear-gradient(90deg, #AB78FD, #8167FC);
+  border-radius: 33rpx;
+  display: flex;
+  margin: 40rpx auto 0rpx;
+}
+
+.about_body {
+  width: 573rpx;
+  font-family: Alibaba PuHuiTi 2.0;
+  font-weight: normal;
+  font-size: 24rpx;
+  color: #666666;
+  line-height: 36rpx;
+  display: flex;
+  justify-content: center;
+  max-height: 400px;
+  overflow-y: auto;
+  margin: 40rpx auto 0rpx;
+}
+.about_us_text {
+  height: 30rpx;
+  font-family: Alibaba PuHuiTi 2.0;
+  font-weight: normal;
+  font-size: 32rpx;
+  color: #000000;
+  line-height: 36rpx;
+  display: flex;
+  justify-content: center;
+}
+.section_10 {
+  width: 657rpx;
+  height: 1000rpx;
+  background: #FFFFFF;
+  border-radius: 33rpx;
+}
+.page {
+  //position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .item_content {
   width: 100%;
   height: 30rpx;
   background-color: #F2F2F2;
 }
 
-.pay_game_text{
+.pay_game_text {
   height: 35rpx;
   font-family: Alibaba PuHuiTi 2.0;
   font-weight: normal;
@@ -622,7 +726,7 @@ export default {
   line-height: 44rpx;
 }
 
-.pay_game_text1{
+.pay_game_text1 {
   height: 25rpx;
   font-family: Alibaba PuHuiTi 2.0;
   font-weight: normal;
@@ -630,8 +734,6 @@ export default {
   color: #999999;
   line-height: 44rpx;
 }
-
-
 
 
 .container1 {
@@ -907,6 +1009,7 @@ export default {
 }
 
 .top_swiper_img {
+  white-space: nowrap;
   width: 100%;
   height: 333.33rpx;
 }
@@ -914,7 +1017,7 @@ export default {
 
 .top_swiper_img1 {
   width: 466.67rpx;
-  height: 100%;
+  height: 340rpx;
   border-radius: 40rpx;
 }
 

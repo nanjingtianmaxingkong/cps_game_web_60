@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "推游小助手",
+  "navigationBarTitleText": "月荔游戏",
   "enablePullDownRefresh": true,
   "usingComponents": {
     "uni-table": "/node-modules/@dcloudio/uni-ui/lib/uni-table/uni-table",

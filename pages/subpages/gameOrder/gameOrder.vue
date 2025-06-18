@@ -149,9 +149,7 @@ export default {
   },
   methods: {
     goBack() {
-      uni.switchTab({
-        url: "/pages/subpages/aboutMe/aboutMe"
-      })
+      uni.navigateBack()
     },
   }
 }

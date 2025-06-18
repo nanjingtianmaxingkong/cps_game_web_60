@@ -40,7 +40,7 @@
   background: linear-gradient(90deg, #AB78FD, #8167FC);
   border-radius: 33rpx;
   display: flex;
-  margin: 50rpx auto 0rpx;
+  margin: 40rpx auto 0rpx;
 }
 .about_body.data-v-0567b30f {
   width: 573rpx;
